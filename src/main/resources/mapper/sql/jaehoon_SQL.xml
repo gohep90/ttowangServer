@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sample">
+	
+	
+	
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    사용자
+		]]>
+	</select>
+	
+	<insert id="insertMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO 사용자(
+			    	전화번호,
+			    	이름,
+			    	이메일,
+			    	생년월일,
+			    	성별
+			    	)
+				VALUES(
+					#{phone},
+			    	#{name},
+			    	#{email},
+			    	#{birthday},
+			    	#{gender}
+			    )
+		]]>
+	</insert>	
+	
+		
+	
+	<insert id="insertEnrollStamp" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO 스탬프관리(
+			    	전화번호,
+			    	사업자등록번호
+			    	)
+				VALUES(
+					#{phone},
+			    	#{index}
+			    )
+		]]>
+	</insert>	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectStoreList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    가맹점
+		]]>
+	</select>
+	
+	<select id="selectSearchStore" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    가맹점
+			WHERE
+				매장이름 like concat('%',#{edt_search},'%')
+		]]>
+	</select>
+	
+	<select id="selectStore" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    가맹점
+			WHERE
+				사업자등록번호 = #{INDEX}
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	<select id="selectCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    전화번호
+			FROM
+			    사용자
+			WHERE
+				이메일 =#{email}
+			AND
+				이름 =#{name}
+		]]>
+	</select>
+	
+	
+	
+		
+	<select id="selectStampList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			   a.*, b.매장이름
+			FROM
+			    스탬프관리 a, 가맹점 b
+			WHERE
+				a.사업자등록번호=b.사업자등록번호
+			AND
+				a.전화번호 =#{phone}
+		]]>
+	</select>
+	
+	<select id="selectStamp" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			   a.*,b.매장이름
+			FROM
+			    스탬프관리 a, 가맹점 b
+			WHERE
+				a.사업자등록번호=b.사업자등록번호
+			AND
+				a.전화번호 =#{phone}
+			AND
+				b.사업자등록번호 =#{index}
+		]]>
+	</select>
+	
+	
+	
+	<update id="updateStamp" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				스탬프관리
+			SET
+				현재스탬프개수=현재스탬프개수+1,
+				누적스탬프개수=누적스탬프개수+1
+			WHERE
+				전화번호=#{phone}
+			AND
+				사업자등록번호=#{index}
+		]]>
+	</update>	
+	
+	
+	
+	<delete id="deleteStamp" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM
+				스탬프관리
+			WHERE
+				전화번호=#{phone}
+			AND
+				사업자등록번호=#{index}
+		]]>
+	</delete>	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
+
