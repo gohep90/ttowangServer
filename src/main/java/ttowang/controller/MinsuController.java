@@ -34,7 +34,7 @@ public class MinsuController {
 			return mv;
 		}
 		
-		
+		dfdfdfderer
 		//json storeList형식 테스트
 		@RequestMapping(value="/searchStore.do")
 		public ModelAndView searchStore(Map<String, Object> commandMap,HttpServletRequest request)throws Exception {
