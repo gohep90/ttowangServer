@@ -11,69 +11,35 @@ import ttowang.abst.dao.abDAO;
 @Repository("JooyongDao")
 public class JooyongDao extends abDAO{
 
-	public List<Map<String, Object>> selectMemberList(Map<String, Object> commandMap) {
-		return (List<Map<String,Object>>)selectList("sample.selectMemberList", commandMap);
+	//가맹점 리스트
+	public List<Map<String, Object>> selectbusinessList(Map<String, Object> commandMap) {
+		return (List<Map<String,Object>>)selectList("jooyong.selectbusinessList", commandMap);
 	}
 
 	
-	public void insertMember(Map<String, Object> map) {
-		insert("sample.insertMember", map);
-	}
-
-
-	public void deleteMember(Map<String, Object> map) {
-		delete("sample.deleteMember",map);
-	}
-	
-	
-	
-	
-	public List<Map<String, Object>> selectStoreList(Map<String, Object> commandMap) {
-		return (List<Map<String,Object>>)selectList("sample.selectStoreList", commandMap);
-	}
-
-
-	public List<java.util.Map<String, Object>> selectStore(Map<String, Object> commandMap) {
+	//가맹점 상세정보
+	public List<Map<String, Object>> businessView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (List<Map<String,Object>>)selectList("sample.selectStore", commandMap);
-	}
-
-	public List<java.util.Map<String, Object>> selectCheck(Map<String, Object> commandMap) {
-		// TODO Auto-generated method stub
-		return (List<Map<String,Object>>)selectList("sample.selectCheck", commandMap);
-	}
-
-	public List<java.util.Map<String, Object>> selectStampList(Map<String, Object> commandMap) {
-		// TODO Auto-generated method stub
-		return (List<Map<String,Object>>)selectList("sample.selectStampList", commandMap);
-	}
-
-
-	public void insertEnrollStamp(Map<String, Object> commandMap) {
-		insert("sample.insertEnrollStamp", commandMap);
+		return (List<Map<String,Object>>)selectList("jooyong.businessView", map);
 	}
 
 	
-	public List<java.util.Map<String, Object>> selectStamp(Map<String, Object> commandMap) {
-		// TODO Auto-generated method stub
-		return (List<Map<String,Object>>)selectList("sample.selectStamp", commandMap);
+	//가맹점 등록
+	public void businessAdd(Map<String, Object> map) {
+		insert("jooyong.businessAdd", map);
 	}
-
-
-	public void updateStamp(Map<String, Object> map) {
-		update("sample.updateStamp", map);
+	
+	
+	//가맹점 수정
+	public void businessUpdate(Map<String, Object> map) {
+		update("jooyong.businessUpdate", map);
 	}
-
-
-	public List<Map<String, Object>> selectSearchStore(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return (List<Map<String,Object>>)selectList("sample.selectSearchStore", map);
+	
+	
+	//가맹점 검색
+	public List<Map<String, Object>> businessSearch(Map<String, Object> commandMap) {
+		return (List<Map<String,Object>>)selectList("jooyong.businessSearch", commandMap);
 	}
-
-
-	public void deleteStamp(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		delete("sample.deleteStamp",map);
-	}
+	
 
 }
