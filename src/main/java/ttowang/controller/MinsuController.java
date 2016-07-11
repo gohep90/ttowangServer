@@ -21,7 +21,7 @@ public class MinsuController {
 
 	@Resource(name = "MinsuService")
 	private MinsuService service;
-
+	
 	
 	//json storeList형식 테스트
 		@RequestMapping(value="/storeList.do")
