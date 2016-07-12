@@ -174,7 +174,7 @@ public class JooyongController {
 				commandMap.put("businessKeyword", businessKeyword);
 	
 				List<Map<String, Object>> list = service.businessSearch(commandMap);
-				mv.addObject("List", list);
+				mv.addObject("businessSearch", list);
 				
 				System.out.println("businessSearch 성공");
 				return mv;
