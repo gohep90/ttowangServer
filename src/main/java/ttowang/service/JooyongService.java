@@ -49,13 +49,4 @@ public class JooyongService {
 	}
 		
 	
-	/*
-	 
-	public Object good() {
-		// TODO Auto-generated method stub
-		return "gg";
-	}
-
-	
-	 */
 }
