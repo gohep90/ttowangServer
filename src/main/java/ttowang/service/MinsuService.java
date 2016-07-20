@@ -20,6 +20,26 @@ public class MinsuService {
 		return dao.selectUserTest(map);
 	}
 
+	public void insertAddStamp(Map<String, Object> map) {
+		dao.insertAddStamp(map);
+	}
+
+	public String selectCheck(Map<String, Object> map) {
+		return dao.selectCheck(map);
+	}
+
+	public void insertUser(Map<String, Object> map) {
+		dao.insertUser(map);
+	}
+
+	public void insertJunMembership(Map<String, Object> map) {
+		dao.insertJunMembership(map);
+		
+	}
+
+
+
+
 	
 	
 

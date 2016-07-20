@@ -3,7 +3,7 @@
 
 <mapper namespace="minsu">
 	
-	<select id="selectUserTest" parameterType="hashmap" resultType="hashmap">
+	<select id="selectUserTest" parameterType="hashmap" resultType="map">
 		<![CDATA[
 			SELECT
 			    *
@@ -13,6 +13,75 @@
 	</select>
 	
 
+	<!-- 스템프 적립 일자별 seq발생 -->
+	<insert id="insertAddStamp" parameterType="map">
+		
+		<selectKey keyProperty="key_seq" resultType="String" order="BEFORE">
+				<![CDATA[
+				select ifnull(max(stampNum),0)+1 seq
+				from stamplist
+				where userId=(select userId from user where userTel=#{userTel})
+				  and businessId = #{businessId}
+				  and stampDate =curdate()
+			]]>
+        </selectKey>
+	
+		<![CDATA[
+			INSERT
+				INTO stamplist(
+			    	userId,
+			    	businessId,
+			    	stampDate,
+			    	stampNum
+			    	)
+				VALUES(
+					(select userId from user where userTel=#{userTel}),
+			    	#{businessId},
+			    	curdate(),
+			    	#{key_seq}
+			    )
+		]]>
+	</insert>	
+	
+	<select id="selectCheck" parameterType="map" resultType="String">
+		<![CDATA[
+			SELECT
+			    userId
+			FROM
+			    user
+			WHERE
+				userTel=#{userTel}
+		]]>
+	</select>
+	
+	
+	<insert id="insertUser" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO user(
+			    	userTel,
+			    	userCode
+			    	)
+				VALUES(
+					#{userTel},
+			    	4
+			    )
+		]]>
+	</insert>	
+	
+	<insert id="insertJunMembership" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO membership(
+			    	userId,
+			    	businessId
+			    	)
+				VALUES(
+					(select userId from user where userTel=#{userTel}),
+			    	#{businessId}
+			    )
+		]]>
+	</insert>	
 	
 	
 </mapper>
