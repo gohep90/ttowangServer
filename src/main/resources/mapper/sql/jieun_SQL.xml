@@ -20,7 +20,7 @@
         	SELECT
      			*
     		FROM
-    			MEMBERSHIP M		
+    			MEMBERSHIP		
         ]]>
     </select>
     
