@@ -79,7 +79,7 @@ public class JieunController {
     }
     
     /**
-     * 단골 매장 삭 
+     * 단골 매장 삭제 
      * @param1 USER ID
      * @param2 BUSINESS ID
      * @return redirect:/checkRealation.do
