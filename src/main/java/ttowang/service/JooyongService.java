@@ -48,5 +48,32 @@ public class JooyongService {
 		return dao.businessSearch(Map);
 	}
 		
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	//모든 쿠폰 리스트
+	public List<Map<String, Object>> selectcouponList(Map<String, Object> Map) throws Exception {
+		return dao.selectcouponList(Map);
+	}
+	
+	//해당 가맹점 쿠폰 상세정보
+	public List<Map<String, Object>> couponView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.couponView(map);
+	}
+	
+	//쿠폰 등록
+	public void couponAdd(Map<String, Object> map) {
+		dao.couponAdd(map);
+	}
+	
+	//쿠폰 수정
+	public void couponUpdate(Map<String, Object> map) {
+		dao.couponUpdate(map);
+	}
+	
+	//쿠폰 수정
+	public void couponDelete(Map<String, Object> map) {
+		dao.couponDelete(map);
+	}
 	
 }

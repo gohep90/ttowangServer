@@ -57,9 +57,6 @@ public class JooyongController {
 				
 				String businessId = request.getParameter("businessId");
 				
-				//commandMap.put("businessId", businessId);
-				
-				//테스트용  Id = 1
 				commandMap.put("businessId", businessId);
 	
 				List<Map<String, Object>> list = service.businessView(commandMap);
@@ -189,6 +186,134 @@ public class JooyongController {
 			}
 		}
 		
+//////////////////////////////////////////////////////////////////////////////////////////
 		
+		//모든 쿠폰 리스트
+		//모든 쿠폰 상세 정보를 출력한다.
+		@RequestMapping(value="/couponList.do")
+		public ModelAndView couponList(Map<String, Object> commandMap)throws Exception {
+			
+			try{
+				ModelAndView mv = new ModelAndView("jsonView");
+
+				List<Map<String, Object>> list = service.selectcouponList(commandMap);
+				mv.addObject("couponList", list);
+	
+				System.out.println("couponList 성공");
+				return mv;
+				
+			}catch(Exception e){
+				
+				System.out.println("couponList 실패");
+				return null;
+			}
+		}
+		
+		//해당 가맹점 쿠폰 상세정보
+		//businessId를 받으면 해당 가맹점의 쿠폰 상세 정보 뿌려줌
+		@RequestMapping(value="/couponView.do",method= RequestMethod.POST)
+		public ModelAndView couponView(Map<String, Object> commandMap,HttpServletRequest request)throws Exception {
+			
+			try{
+				
+				ModelAndView mv = new ModelAndView("jsonView");
+				
+				String businessId = request.getParameter("businessId");
+				
+				commandMap.put("businessId", businessId);
+	
+				List<Map<String, Object>> list = service.couponView(commandMap);
+				mv.addObject("List", list);
+				System.out.println("couponView 성공");
+				return mv;
+				
+			}catch(Exception e){
+				
+				System.out.println("couponView 실패");
+				return null;
+				
+			}
+		}
+		
+		//쿠폰 등록
+		//businessId와 couponCode를 입력하면 쿠폰 등록
+		@RequestMapping("/couponAdd.do")
+		public void couponAdd(HttpServletRequest request) throws Exception {
+			
+			try{
+				String businessId = request.getParameter("businessId");
+				String couponCode = request.getParameter("couponCode");
+				String couponName = request.getParameter("couponName");
+				String stampNeed = request.getParameter("stampNeed");
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				map.put("businessId", businessId);
+				map.put("couponCode", couponCode);
+				map.put("couponName", couponName);
+				map.put("stampNeed", stampNeed);
+				
+				service.couponAdd(map);
+				
+				System.out.println("couponAdd 성공");
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("couponAdd 실패");
+			}
+		}
+		
+		//쿠폰 수정
+		//우선 가맹점 상세정보를 businessId로 받은 다음에 정보를 입력하면 businessId를 찾아서 정보 삽입
+		@RequestMapping("/couponUpdate.do")
+		public void couponUpdate(HttpServletRequest request) throws Exception {
+		
+			try{
+			
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				String businessId = request.getParameter("businessId");
+				String couponCode = request.getParameter("couponCode");
+				String couponName = request.getParameter("couponName");
+				String stampNeed = request.getParameter("stampNeed");
+	
+				map.put("businessId", businessId);
+				map.put("couponCode", couponCode);
+				map.put("couponName", couponName);
+				map.put("stampNeed", stampNeed);
+				
+				service.couponUpdate(map);
+				System.out.println("couponUpdate 성공");
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("couponUpdate 실패");
+			}
+		}
+		
+		//쿠폰 수정
+		//우선 가맹점 상세정보를 businessId로 받은 다음에 정보를 입력하면 businessId를 찾아서 정보 삽입
+		@RequestMapping("/couponDelete.do")
+		public void couponDelete(HttpServletRequest request) throws Exception {
+		
+			try{
+			
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				String businessId = request.getParameter("businessId");
+				String couponCode = request.getParameter("couponCode");
+	
+				map.put("businessId", businessId);
+				map.put("couponCode", couponCode);
+				
+				service.couponDelete(map);
+				System.out.println("couponDelete 성공");
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("couponDelete 실패");
+			}
+		}	
 
 }

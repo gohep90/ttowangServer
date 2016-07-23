@@ -56,5 +56,59 @@
 			where businessName like concat('%',#{businessKeyword},'%')
 		]]>
 	</select>
+	
+<!--                  쿠폰 혜택 테이블                                       -->
+
+
+	<!-- 모든 쿠폰 리스트  -->
+	<select id="selectcouponList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from coupon order by businessId desc, couponCode asc
+		]]>
+	</select>
+	
+	<!-- 해당 가맹점 쿠폰 상세정보  -->
+	<select id="couponView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from coupon where businessId = #{businessId}
+			
+		]]>
+	</select>
+	
+	<!-- 쿠폰 등록  -->
+	<insert id="couponAdd" parameterType="hashmap">
+		<![CDATA[
+			insert into coupon
+			( businessId, couponCode, couponName, stampNeed) 
+			values
+			(#{businessId}, #{couponCode}, #{couponName}, #{stampNeed})
+		]]>
+	</insert>	
+	
+	<!-- 쿠폰 수정  -->
+	<update id="couponUpdate" parameterType="hashmap">
+		<![CDATA[
+		
+			update coupon 
+			set 
+			couponName = #{couponName}, stampNeed = #{stampNeed}
+			where 
+			businessId = #{businessId} and couponCode = #{couponCode}
+			
+		]]>
+	</update>	
+	
+	<!-- 쿠폰 삭제  -->
+	<delete id="couponDelete" parameterType="hashmap">
+		<![CDATA[
+		
+			delete
+			from coupon
+			where
+			businessId = #{businessId} and couponCode = #{couponCode}
+			
+		]]>
+	</delete>	
+	
 </mapper>
 

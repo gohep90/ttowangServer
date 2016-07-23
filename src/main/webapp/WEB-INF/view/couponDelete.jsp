@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8");%>
 
-<jsp:useBean id ="businessUpdate" class="ttowang.controller.JooyongController" scope="request"/>
+<jsp:useBean id ="couponDelete" class="ttowang.controller.JooyongController" scope="request"/>
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +10,6 @@
 <title>Hello</title>
 </head>
 <body>
-businessUpdate 성공
+couponDelete 성공
 </body>
 </html>
