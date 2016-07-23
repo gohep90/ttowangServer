@@ -29,7 +29,7 @@ public class JaehoonDao extends abDAO{
 	
 	
 	public List<Map<String, Object>> selectStoreList(Map<String, Object> commandMap) {
-		return (List<Map<String,Object>>)selectList("sample.selectStoreList", commandMap);
+		return (List<Map<String,Object>>)selectList("minsu.selectStoreList", commandMap);
 	}
 
 
