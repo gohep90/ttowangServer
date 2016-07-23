@@ -1,47 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+package ttowang.service;
 
-<mapper namespace="jieun">
+import java.util.List;
+import java.util.Map;
 
-<!-- 단골 가맹점 리스트 -->
-	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
-        <![CDATA[
-        	SELECT
-     			*
-    		FROM
-    			BUSINESS B,MEMBERSHIP M
-    		WHERE 
-    			M.businessID = B.businessID    			
-        ]]>
-    </select>
-    
-    <select id="selectCheckMembership" parameterType="hashmap" resultType="hashmap">
-        <![CDATA[
-        	SELECT
-     			*
-    		FROM
-    			MEMBERSHIP M		
-        ]]>
-    </select>
-    
-    <insert id="insertMyBusiness" parameterType="hashmap">
-    	<![CDATA[
-    		INSERT
-    			INTO MEMBERSHIP
-    		VALUES
-    			( #{USERID} , #{BUSINESSID} )
-    	]]>
-    </insert>
-    
-    <delete id="deleteMyBusiness" parameterType="hashmap">
-    	<![CDATA[
-    		DELETE FROM
-    			MEMBERSHIP
-    		WHERE
-    			userID = #{USERID}
-			AND
-				businessID = #{BUSINESSID}
-    	]]>
-    </delete>
-</mapper>
+import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ttowang.dao.JieunDao;
+
+@Service("JieunService")
+public class JieunService {
+	
+	@Resource(name="JieunDao")
+	private JieunDao dao;
+	
+	public List<Map<String, Object>> selectMyBusinessList(Map<String, Object> map) throws Exception {
+		return dao.selectMyBusinessList(map);
+	}
+	
+	public List<Map<String, Object>> selectCheckMemebership(Map<String, Object> map) throws Exception {
+		return dao.selectCheckMembership(map);
+	}
+
+	public void insertMyBusiness(Map<String, Object> map) {
+		dao.insertMyBusiness(map);
+	}
+
+	public void deleteMyBusiness(Map<String, Object> map) {
+		dao.deleteMyBusiness(map);
+	}
+}
