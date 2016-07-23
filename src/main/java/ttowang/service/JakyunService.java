@@ -16,9 +16,16 @@ public class JakyunService {
 	@Resource(name="JakyunDao")
 	private JakyunDao dao;
 
+	public void insertUser(Map<String, Object> map) {
+		dao.insertUser(map);
+	}
 	
-
-
+	public String checkUser(Map<String, Object> map) {
+		return dao.checkUser(map);
+	}
 	
-
+	public void updateUser(Map<String, Object> map) {
+		dao.updateUser(map);
+	}
+	
 }
