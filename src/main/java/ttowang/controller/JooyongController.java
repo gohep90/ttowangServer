@@ -60,7 +60,7 @@ public class JooyongController {
 				//commandMap.put("businessId", businessId);
 				
 				//테스트용  Id = 1
-				commandMap.put("businessId", "1");
+				commandMap.put("businessId", businessId);
 	
 				List<Map<String, Object>> list = service.businessView(commandMap);
 				mv.addObject("List", list);
@@ -188,5 +188,7 @@ public class JooyongController {
 				return null;
 			}
 		}
+		
+		
 
 }
