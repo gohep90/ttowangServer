@@ -27,4 +27,5 @@ public class JieunDao extends abDAO{
 	public void deleteMyBusiness(Map<String, Object> map) {
 		delete("jieun.deleteMyBusiness",map);
 	}
+	
 }
