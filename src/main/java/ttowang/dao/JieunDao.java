@@ -16,7 +16,7 @@ public class JieunDao extends abDAO{
     }
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectCheckMembership(Map<String, Object> map) {
+	public List<Map<String, Object>> selectCheckMembership(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>)selectList("jieun.selectCheckMembership", map);
 	}
 
