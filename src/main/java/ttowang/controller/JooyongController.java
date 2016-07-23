@@ -92,6 +92,7 @@ public class JooyongController {
 				String businessPhoto = request.getParameter("businessPhoto");
 				String businessLat = request.getParameter("businessLat");
 				String businessLng = request.getParameter("businessLng");
+				String userId = request.getParameter("userId");
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 				
@@ -106,6 +107,7 @@ public class JooyongController {
 				map.put("businessPhoto", businessPhoto);
 				map.put("businessLat", businessLat);
 				map.put("businessLng", businessLng);
+				map.put("userId", userId);
 				
 				service.businessAdd(map);
 				
@@ -138,7 +140,7 @@ public class JooyongController {
 				String businessPhoto = request.getParameter("businessPhoto");
 				String businessLat = request.getParameter("businessLat");
 				String businessLng = request.getParameter("businessLng");
-				
+				String userId = request.getParameter("userId");
 	
 				map.put("businessId", businessId);
 				map.put("businessLicense", businessLicense);
@@ -152,6 +154,7 @@ public class JooyongController {
 				map.put("businessPhoto", businessPhoto);
 				map.put("businessLat", businessLat);
 				map.put("businessLng", businessLng);
+				map.put("userId", userId);
 				
 				service.businessUpdate(map);
 				System.out.println("businessUpdate 성공");
