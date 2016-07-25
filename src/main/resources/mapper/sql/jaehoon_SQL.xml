@@ -17,19 +17,21 @@
 	<insert id="insertMember" parameterType="hashmap">
 		<![CDATA[
 			INSERT
-				INTO 사용자(
-			    	전화번호,
-			    	이름,
-			    	이메일,
-			    	생년월일,
-			    	성별
+				INTO user(
+			    	userTel,
+			    	userName,
+			    	userBirth,
+			    	userGender,
+			    	userCode,
+			    	userEmail
 			    	)
 				VALUES(
-					#{phone},
-			    	#{name},
-			    	#{email},
-			    	#{birthday},
-			    	#{gender}
+					#{userTel},
+			    	#{userName},
+			    	#{userBirth},
+			    	#{userGender},
+			    	#{userCode},
+			    	#{userEmail}
 			    )
 		]]>
 	</insert>	
@@ -95,13 +97,13 @@
 	<select id="selectCheck" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
-			    전화번호
+			    userTel
 			FROM
-			    사용자
+			    user
 			WHERE
-				이메일 =#{email}
+				userEmail =#{email}
 			AND
-				이름 =#{name}
+				userName =#{name}
 		]]>
 	</select>
 	

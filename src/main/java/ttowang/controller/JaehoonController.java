@@ -169,18 +169,23 @@ public class JaehoonController {
 		public void memberInput(HttpServletRequest request) throws Exception {
 			Map<String, Object> map = new HashMap<String, Object>();
 
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String gender = request.getParameter("gender");
-			String birthday = request.getParameter("birthday");
-			String phone = request.getParameter("phone");
+			String userTel = request.getParameter("phone");
+			String userName = request.getParameter("name");
+			String userBirth = request.getParameter("birthday");
+			String userEmail = request.getParameter("email");
+			String userGender = request.getParameter("gender");
+			
+			
+			
+			String userCode="1";
 
-			System.out.println(name);
-			map.put("name", name);
-			map.put("email", email);
-			map.put("gender", gender);
-			map.put("birthday", birthday);
-			map.put("phone", phone);
+			System.out.println(userName);
+			map.put("userName", userName);
+			map.put("userEmail", userEmail);
+			map.put("userGender", userGender);
+			map.put("userBirth", userBirth);
+			map.put("userTel", userTel);
+			map.put("userCode", userCode);
 
 			service.insertMember(map);
 		}
