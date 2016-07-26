@@ -7,21 +7,22 @@
 		<![CDATA[
 			INSERT
 				INTO user(
-			    	tel,
-			    	name,
-			    	birth,
-			    	gender,
-			    	code,
-			    	email)
+			    	userTel,
+			    	userName,
+			    	userBirth,
+			    	userGender,
+			    	userCode,
+			    	userEmail)
 				VALUES(
-					#{tel},
-					#{name},
-					#{birth},
-					#{gender},
-					#{code},
-					#{email})
+					#{userTel},
+					#{userName},
+					#{userBirth},
+					#{userGender},
+					#{userCode},
+					#{userEmail})
 		]]>
 	</insert>
+	
 	
 	
 	
@@ -43,13 +44,13 @@
 			UPDATE
 				user
 			SET
-				name=#{name},
-				birth=#{birth},
-				gender=#{gender},
-				code=1,
-				email=#{email}
+				userName=#{userName},
+				userBirth=#{userBirth},
+				userGender=#{userGender},
+				userCode=1,
+				userEmail=#{userEmail}
 			WHERE
-				tel=#{tel}
+				userTel=#{userTel}
 		]]>
 	</update>
 	
