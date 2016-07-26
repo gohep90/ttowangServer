@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="jakyun">
+
+	<select id="checkUser" parameterType="hashmap" resultType="map">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    user
+			WHERE
+				userTel=#{userTel}
+		]]>
+	</select>
 	
 	<insert id="insertUser" parameterType="hashmap">
 		<![CDATA[
@@ -23,10 +34,7 @@
 		]]>
 	</insert>
 	
-	
-	
-	
-	<select id="checkUser" parameterType="map" resultType="String">
+	<select id="checkCode" parameterType="map" resultType="String">
 		<![CDATA[
 			SELECT
 				userId
@@ -36,8 +44,6 @@
 				userTel=#{userTel}
 		]]>
 	</select>
-	
-	
 	
 	<update id="updateUser" parameterType="hashmap">
 		<![CDATA[
@@ -53,7 +59,6 @@
 				userTel=#{userTel}
 		]]>
 	</update>
-	
-	
+		
 </mapper>
 
