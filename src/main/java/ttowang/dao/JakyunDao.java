@@ -11,17 +11,19 @@ import ttowang.abst.dao.abDAO;
 @Repository("JakyunDao")
 public class JakyunDao extends abDAO{
 	
+	public List<Map<String, Object>> checkUser(Map<String, Object> map) {
+		return (List<Map<String,Object>>)selectList("jakyun.checkUser", map);
+	}
+	
 	public void insertUser(Map<String, Object> map) {
 		insert("jakyun.insertUser", map);
 	}
 	
-	public String checkUser(Map<String, Object> map) {
-		return (String)selectOne("jakyun.checkUser", map);
+	public String checkCode(Map<String, Object> map) {
+		return (String)selectOne("jakyun.checkCode", map);
 	}
 	
 	public void updateUser(Map<String, Object> map) {
 		update("jakyun.updateUser", map);
 	}
-	
-	
 }
