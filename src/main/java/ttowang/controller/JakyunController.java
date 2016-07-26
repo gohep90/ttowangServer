@@ -28,24 +28,24 @@ public class JakyunController {
 	public void insertUser(HttpServletRequest request) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		String tel = request.getParameter("edt_tel");
-		String name = request.getParameter("edt_name");
-		String birth = request.getParameter("edt_birth");
-		String gender = request.getParameter("edt_gender");
-		String email = request.getParameter("edt_email");
+		String userTel = request.getParameter("userTel");
+		String userName = request.getParameter("userName");
+		String userBirth = request.getParameter("userBirth");
+		String userGender = request.getParameter("userGender");
+		String userEmail = request.getParameter("userEmail");
 		
-		map.put("tel", tel);
-		map.put("name", name);
-		map.put("birth", birth);
-		map.put("gender", gender);
-		map.put("email", email);
+		map.put("userTel", userTel);
+		map.put("userName", userName);
+		map.put("userBirth", userBirth);
+		map.put("userGender", userGender);
+		map.put("userEmail", userEmail);
 
 		// userCode=1 -> 정회원
 		// userCode=0 -> 준회원
 		
 		//준회원도 아닌 경우
 		if(service.checkUser(map) == null) {
-			map.put("code", 1);
+			map.put("userCode", 1);
 			service.insertUser(map);
 		}
 		
@@ -54,6 +54,5 @@ public class JakyunController {
 			service.updateUser(map);
 		}
 	}
-	
-	
+		
 }
