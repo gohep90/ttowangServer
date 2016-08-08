@@ -4,14 +4,20 @@
 <mapper namespace="jieun">
 
 <!-- 단골 가맹점 리스트 -->
-	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectMyBusinessList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
-        	SELECT
-     			*
-    		FROM
-    			BUSINESS B,MEMBERSHIP M
-    		WHERE 
-    			M.businessID = B.businessID    			
+        	SELECT 
+			    S.userID,
+			    B.businessName,
+			    B.businessAddress,
+			    COUNT(IF(S.couponNum IS NULL, 1, NULL)) stampCount,
+			    COUNT(*) totalStampCount
+			FROM
+			    stamplist S,
+			    business B
+			WHERE
+			    S.businessId = B.businessId
+			GROUP BY S.businessId , S.userID   			
         ]]>
     </select>
     
