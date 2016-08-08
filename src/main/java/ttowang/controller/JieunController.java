@@ -54,12 +54,11 @@ public class JieunController {
      * 단골 매장 추가 
      * @param1 USER ID
      * @param2 BUSINESS ID
-     * @return redirect:/checkRealation.do
      */
     @RequestMapping(value="/insertMyBusiness.do")
-    //insertMyBusiness.do?USERID=1&BUSINESSID=11
-    public ModelAndView insertMyBusiness(HttpServletRequest request) throws Exception{
-    	ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
+    //insertMyBusiness.do?USERID=3&BUSINESSID=11
+    public void insertMyBusiness(HttpServletRequest request) throws Exception{
+    	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
     	Map<String, Object> commandMap = new HashMap<String, Object>();
     	String userID;
     	String businessID;
@@ -75,19 +74,18 @@ public class JieunController {
 	        
     	} catch (Exception e) {  	}
     	
-    	return mv;
+    //	return mv;
     }
     
     /**
      * 단골 매장 삭제 
      * @param1 USER ID
      * @param2 BUSINESS ID
-     * @return redirect:/checkRealation.do
      */
     @RequestMapping(value="/deleteMyBusiness.do")
     //deleteMyBusiness.do?USERID=3&BUSINESSID=11
-    public ModelAndView deleteMyBusiness(HttpServletRequest request) throws Exception{
-    	ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
+    public void deleteMyBusiness(HttpServletRequest request) throws Exception{
+    	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
     	Map<String, Object> commandMap = new HashMap<String, Object>();
     	String userID;
     	String businessID;
@@ -103,7 +101,7 @@ public class JieunController {
 	        
     	} catch (Exception e) {}
     	
-    	return mv;
+    	//return mv;
     }
 
 }
