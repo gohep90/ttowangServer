@@ -41,7 +41,6 @@ public class MinsuController {
 		}
 	}
 	
-	
 	//전화번호를 통한 (정회원)스템프 적립
 	@RequestMapping(value="/addStamp.do")
 	public void addStamp(HttpServletRequest request)throws Exception {
