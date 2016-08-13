@@ -23,6 +23,15 @@
 	</select>
 	
 	
+	<!-- 가맹점 사진 -->
+	<select id="businessPhoto" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from photo where businessId = #{businessId}
+			
+		]]>
+	</select>
+	
+	
 	<!-- 가맹점 등록 -->
 	<insert id="businessAdd" parameterType="hashmap">
 		<![CDATA[

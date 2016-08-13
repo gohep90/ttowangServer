@@ -30,6 +30,11 @@ public class JooyongService {
 		return dao.businessView(map);
 	}
 	
+	//가맹점 사진
+	public List<Map<String, Object>> businessPhoto(Map<String, Object> map) {
+		return dao.businessPhoto(map);
+	}
+	
 	
 	//가맹점 등록
 	public void businessAdd(Map<String, Object> map) {
@@ -75,5 +80,6 @@ public class JooyongService {
 	public void couponDelete(Map<String, Object> map) {
 		dao.couponDelete(map);
 	}
+
 	
 }

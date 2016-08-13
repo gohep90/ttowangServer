@@ -22,6 +22,12 @@ public class JooyongDao extends abDAO{
 		// TODO Auto-generated method stub
 		return (List<Map<String,Object>>)selectList("jooyong.businessView", map);
 	}
+	
+	
+	//가맹점 사진
+	public List<Map<String, Object>> businessPhoto(Map<String, Object> map) {
+		return (List<Map<String,Object>>)selectList("jooyong.businessPhoto", map);
+	}
 
 	
 	//가맹점 등록
@@ -68,5 +74,8 @@ public class JooyongDao extends abDAO{
 	public void couponDelete(Map<String, Object> map) {
 		delete("jooyong.couponDelete", map);
 	}
+
+
+	
 	
 }

@@ -60,7 +60,12 @@ public class JooyongController {
 				commandMap.put("businessId", businessId);
 	
 				List<Map<String, Object>> list = service.businessView(commandMap);
+				List<Map<String, Object>> photo = service.businessPhoto(commandMap);
+				
 				mv.addObject("List", list);
+				mv.addObject("Photo", photo);
+				
+				
 				System.out.println("businessView 성공");
 				return mv;
 				
