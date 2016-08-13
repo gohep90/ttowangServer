@@ -7,8 +7,10 @@
 	<!-- 가맹점 리스트 -->
 	<select id="selectbusinessList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * 
-			from business 
+			select a.*, b.photoName 
+			from business a , photo b
+			where a.businessId = b. businessId
+			group by businessId
 			order by businessId desc, businessLicense asc
 		]]>
 	</select>
