@@ -36,9 +36,9 @@
 	<insert id="businessAdd" parameterType="hashmap">
 		<![CDATA[
 			insert into business
-			( businessLicense, businessName, businessTel, businessInfo, businessTime, businessAddress, businessMenu, businessBenefit, businessPhoto, businessLat, businessLng, userId) 
+			( businessLicense, businessName, businessTel, businessInfo, businessTime, businessAddress, businessMenu, businessBenefit, businessPhoto, businessLat, businessLng, userId,businessType) 
 			values
-			(#{businessLicense},#{businessName},#{businessTel},#{businessInfo},#{businessTime},#{businessAddress},#{businessMenu},#{businessBenefit},#{businessPhoto},#{businessLat},#{businessLng},#{userId})
+			(#{businessLicense},#{businessName},#{businessTel},#{businessInfo},#{businessTime},#{businessAddress},#{businessMenu},#{businessBenefit},#{businessPhoto},#{businessLat},#{businessLng},#{userId},#{businessType})
 		]]>
 	</insert>	
 
@@ -49,7 +49,7 @@
 		
 			update business 
 			set 
-			businessLicense = #{businessLicense}, businessName = #{businessName}, businessTel = #{businessTel}, businessInfo = #{businessInfo}, businessTime = #{businessTime}, businessAddress = #{businessAddress}, businessMenu = #{businessMenu}, businessBenefit = #{businessBenefit}, businessPhoto = #{businessPhoto}, businessLat = #{businessLat}, businessLng = #{businessLng}, userId = #{userId}
+			businessLicense = #{businessLicense}, businessName = #{businessName}, businessTel = #{businessTel}, businessInfo = #{businessInfo}, businessTime = #{businessTime}, businessAddress = #{businessAddress}, businessMenu = #{businessMenu}, businessBenefit = #{businessBenefit}, businessPhoto = #{businessPhoto}, businessLat = #{businessLat}, businessLng = #{businessLng}, userId = #{userId}, businessType = #{businessType}
 			where 
 			businessId = #{businessId}
 			
