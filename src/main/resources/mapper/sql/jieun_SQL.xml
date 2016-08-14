@@ -17,7 +17,9 @@
 			    business B
 			WHERE
 			    S.businessId = B.businessId
-			GROUP BY S.businessId , S.userID   			
+			AND
+				S.userID = #{USERID}
+			GROUP BY S.businessId    			
         ]]>
     </select>
     
