@@ -26,11 +26,22 @@ public class JieunController {
 	 * 단골 매장 리스트 전송 
 	 * @return jsonView
 	 */
+	//selectMyBusinesses.do?USERID=1
     @RequestMapping(value="/selectMyBusinesses.do")
-    public ModelAndView selectMyBusinessList(Map<String,Object> commandMap) throws Exception{
+    public ModelAndView selectMyBusinessList(HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("jsonView");
+        Map<String, Object> commandMap = new HashMap<String, Object>();
+        List<Map<String,Object>> list = null;
+        String userID;
+        
+        try {
+	    	userID = request.getParameter("USERID");
+	        commandMap.put("USERID", userID);
+	        
+	        list = service.selectMyBusinessList(commandMap);
+	        
+    	} catch (Exception e) {}
 
-        List<Map<String,Object>> list = service.selectMyBusinessList(commandMap);
         mv.addObject("list", list);
         
         return mv;
@@ -55,8 +66,8 @@ public class JieunController {
      * @param1 USER ID
      * @param2 BUSINESS ID
      */
-    @RequestMapping(value="/insertMyBusiness.do")
     //insertMyBusiness.do?USERID=3&BUSINESSID=11
+    @RequestMapping(value="/insertMyBusiness.do")
     public void insertMyBusiness(HttpServletRequest request) throws Exception{
     	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
     	Map<String, Object> commandMap = new HashMap<String, Object>();
@@ -82,8 +93,8 @@ public class JieunController {
      * @param1 USER ID
      * @param2 BUSINESS ID
      */
-    @RequestMapping(value="/deleteMyBusiness.do")
     //deleteMyBusiness.do?USERID=3&BUSINESSID=11
+    @RequestMapping(value="/deleteMyBusiness.do")
     public void deleteMyBusiness(HttpServletRequest request) throws Exception{
     	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
     	Map<String, Object> commandMap = new HashMap<String, Object>();
