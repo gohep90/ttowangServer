@@ -31,4 +31,9 @@ public class JieunService {
 	public void deleteMyBusiness(Map<String, Object> map) {
 		dao.deleteMyBusiness(map);
 	}
+
+	public List<Map<String, Object>> selectMyCoupon(Map<String, Object> commandMap) {
+		// TODO Auto-generated method stub
+		return dao.selectMyCoupon(commandMap);
+	}
 }

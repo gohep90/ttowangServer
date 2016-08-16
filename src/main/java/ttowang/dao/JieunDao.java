@@ -7,15 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import ttowang.abst.dao.abDAO;
 
+@SuppressWarnings("unchecked")
 @Repository("JieunDao")
 public class JieunDao extends abDAO{
 
-	@SuppressWarnings("unchecked")
+	
 	public List<Map<String, Object>> selectMyBusinessList(Map<String, Object> map) throws Exception{
         return (List<Map<String, Object>>)selectList("jieun.selectMyBusinessList", map);
     }
 
-	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectCheckMembership(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>)selectList("jieun.selectCheckMembership", map);
 	}
@@ -26,6 +26,10 @@ public class JieunDao extends abDAO{
 
 	public void deleteMyBusiness(Map<String, Object> map) {
 		delete("jieun.deleteMyBusiness",map);
+	}
+
+	public List<Map<String, Object>> selectMyCoupon(Map<String, Object> map) {
+		return (List<Map<String, Object>>)selectList("jieun.selectMyCoupon", map);
 	}
 	
 }

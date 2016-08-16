@@ -57,16 +57,14 @@
 		    COUNT(IF(S.couponNum IS NULL, 1, NULL)) stampCount,
 		    COUNT(*) totalStampCount
 		FROM
-		    stamplist S,
-		    business B,
-		    photo P
+		    stamplist S
+		    inner join business B on S.businessId = B.businessId
+            inner join photo P on S.businessId = P.businessId
 		WHERE
-		    S.businessId = B.businessId
-		AND
-			B.businessId = P.businessId
-		AND
 			S.userID = #{USERID}
-		GROUP BY B.businessId
+		AND
+			P.seq=1
+		GROUP BY S.businessId
 		UNION
 		SELECT 
 		    B.businessId, 
@@ -94,6 +92,20 @@
 		group by B.businessId
         ]]>
     </select>
+    
+    <select id="selectMyCoupon" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+        	select a.couponNum,a.businessId,a.couponUse, c.couponName 
+			from couponlist a, stamplist b, coupon c
+			where a.couponNum = b.couponNum
+			and a.businessId = c.businessId
+			and a.couponCode = c.couponCode
+			and b.userId=2
+			group by b.couponNum;	
+        ]]>
+    </select>
+    
+    
     
     <select id="selectCheckMembership" parameterType="hashmap" resultType="hashmap">
         <![CDATA[

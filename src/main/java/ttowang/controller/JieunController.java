@@ -32,6 +32,7 @@ public class JieunController {
         ModelAndView mv = new ModelAndView("jsonView");
         Map<String, Object> commandMap = new HashMap<String, Object>();
         List<Map<String,Object>> list = null;
+        List<Map<String,Object>> coupon = null;
         String userID;
         
         try {
@@ -41,11 +42,13 @@ public class JieunController {
 	        System.out.println("userID = "+userID);
 	        
 	        list = service.selectMyBusinessList(commandMap);
-	        //System.out.println("list = "+list);
+	        coupon = service.selectMyCoupon(commandMap);
+	        System.out.println("coupon = "+coupon);
 	        
-    	} catch (Exception e) {}
-
+    	} catch (Exception e) {System.out.println("aaa = ");}
+        	
         mv.addObject("list", list);
+        mv.addObject("coupon", coupon);
         
         return mv;
     }
