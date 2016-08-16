@@ -95,7 +95,7 @@
     
     <select id="selectMyCoupon" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
-        	select a.couponNum,a.businessId,a.couponUse, c.couponName 
+        	select a.*, c.couponName 
 			from couponlist a, stamplist b, coupon c
 			where a.couponNum = b.couponNum
 			and a.businessId = c.businessId
