@@ -50,7 +50,7 @@
     <select id="selectMyBusinessList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
        SELECT 
-		    S.userID,
+		    B.businessId,
 		    B.businessName,
 		    B.businessAddress,
 		    P.photoName,
@@ -69,7 +69,7 @@
 		GROUP BY B.businessId
 		UNION
 		SELECT 
-		    M.userID, 
+		    B.businessId, 
 		    B.businessName, 
 		    B.businessAddress,
 		    P.photoName,
@@ -82,7 +82,7 @@
 		WHERE
 		    M.userID = #{USERID}
 		AND M.businessId = B.businessId
-		AND M.businessID = P.businessID        
+		AND M.businessID = P.businessId        
 		AND M.businessId NOT IN (SELECT 
 		            S.businessId
 		        FROM

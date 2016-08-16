@@ -41,7 +41,7 @@ public class JieunController {
 	        System.out.println("userID = "+userID);
 	        
 	        list = service.selectMyBusinessList(commandMap);
-	        System.out.println("list = "+list);
+	        //System.out.println("list = "+list);
 	        
     	} catch (Exception e) {}
 
