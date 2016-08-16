@@ -38,7 +38,10 @@ public class JieunController {
 	    	userID = request.getParameter("USERID");
 	        commandMap.put("USERID", userID);
 	        
+	        System.out.println("userID = "+userID);
+	        
 	        list = service.selectMyBusinessList(commandMap);
+	        System.out.println("list = "+list);
 	        
     	} catch (Exception e) {}
 

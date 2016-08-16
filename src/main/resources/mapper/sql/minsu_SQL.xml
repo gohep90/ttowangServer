@@ -43,6 +43,7 @@
 		]]>
 	</insert>	
 	
+	<!-- 정회원 확인-->
 	<select id="selectCheck" parameterType="map" resultType="String">
 		<![CDATA[
 			SELECT
@@ -54,7 +55,7 @@
 		]]>
 	</select>
 	
-	
+	<!-- 준회원 등록-->
 	<insert id="insertUser" parameterType="hashmap">
 		<![CDATA[
 			INSERT
@@ -69,6 +70,7 @@
 		]]>
 	</insert>	
 	
+	<!-- 준회원 즐겨찾기 등록-->
 	<insert id="insertJunMembership" parameterType="hashmap">
 		<![CDATA[
 			INSERT

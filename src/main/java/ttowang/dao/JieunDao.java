@@ -12,7 +12,7 @@ public class JieunDao extends abDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectMyBusinessList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("jieun.selectBoardList", map);
+        return (List<Map<String, Object>>)selectList("jieun.selectMyBusinessList", map);
     }
 
 	@SuppressWarnings("unchecked")

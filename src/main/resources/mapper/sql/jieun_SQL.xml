@@ -3,7 +3,7 @@
 
 <mapper namespace="jieun">
 
-<!-- 단골 가맹점 리스트 -->
+<!-- 단골 가맹점 리스트 
 	<select id="selectMyBusinessList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
         	SELECT 
@@ -43,6 +43,55 @@
 		            S.businessId = B.businessId
 		                AND S.userID  =#{USERID}
 		        GROUP BY S.businessId)
+        ]]>
+    </select>
+   --> 
+    
+    <select id="selectMyBusinessList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+       SELECT 
+		    S.userID,
+		    B.businessName,
+		    B.businessAddress,
+		    P.photoName,
+		    COUNT(IF(S.couponNum IS NULL, 1, NULL)) stampCount,
+		    COUNT(*) totalStampCount
+		FROM
+		    stamplist S,
+		    business B,
+		    photo P
+		WHERE
+		    S.businessId = B.businessId
+		AND
+			B.businessId = P.businessId
+		AND
+			S.userID = #{USERID}
+		GROUP BY B.businessId
+		UNION
+		SELECT 
+		    M.userID, 
+		    B.businessName, 
+		    B.businessAddress,
+		    P.photoName,
+		    @stampCount := 0 stampCount,
+		    @totalStampCount := 0 totalStampCount
+		FROM
+		    membership M,
+		    business B,
+		    photo P
+		WHERE
+		    M.userID = #{USERID}
+		AND M.businessId = B.businessId
+		AND M.businessID = P.businessID        
+		AND M.businessId NOT IN (SELECT 
+		            S.businessId
+		        FROM
+		            stamplist S
+		        WHERE
+		            S.businessId = B.businessId
+		                AND S.userID  =#{USERID}
+		        GROUP BY S.businessId)
+		group by B.businessId
         ]]>
     </select>
     
