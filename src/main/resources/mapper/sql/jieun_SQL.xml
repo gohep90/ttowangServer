@@ -100,7 +100,7 @@
 			where a.couponNum = b.couponNum
 			and a.businessId = c.businessId
 			and a.couponCode = c.couponCode
-			and b.userId=2
+			and b.userId=#{USERID}
 			group by b.couponNum;	
         ]]>
     </select>
