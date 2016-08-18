@@ -31,4 +31,8 @@ public class JakyunService {
 	public void updateUser(Map<String, Object> map) {
 		dao.updateUser(map);
 	}
+	
+	public void myInfoEdit(Map<String, Object> map) {
+		dao.myInfoEdit(map);
+	}
 }
