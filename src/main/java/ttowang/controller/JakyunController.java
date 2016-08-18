@@ -73,5 +73,26 @@ public class JakyunController {
 		else {
 			service.updateUser(map);
 		}
-	}	
+	}
+	
+	@RequestMapping("/myInfoEdit.do")
+	public void myIndoEdit(HttpServletRequest request) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String userTel = request.getParameter("userTel");
+		String userName = request.getParameter("userName");
+		String userBirth = request.getParameter("userBirth");
+		String userGender = request.getParameter("userGender");
+		String userEmail = request.getParameter("userEmail");
+		
+		map.put("userTel", userTel);
+		map.put("userName", userName);
+		map.put("userBirth", userBirth);
+		map.put("userGender", userGender);
+		map.put("userEmail", userEmail);
+		
+		System.out.println("myInfoEdit 성공");
+		
+		service.myInfoEdit(map);
+	}
 }
