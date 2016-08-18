@@ -45,7 +45,7 @@ public class JieunController {
 	        coupon = service.selectMyCoupon(commandMap);
 	        System.out.println("coupon = "+coupon);
 	        
-    	} catch (Exception e) {System.out.println("aaa = ");}
+    	} catch (Exception e) {}
         	
         mv.addObject("list", list);
         mv.addObject("coupon", coupon);
@@ -74,8 +74,9 @@ public class JieunController {
      */
     //insertMyBusiness.do?USERID=3&BUSINESSID=11
     @RequestMapping(value="/insertMyBusiness.do")
-    public void insertMyBusiness(HttpServletRequest request) throws Exception{
+    public ModelAndView insertMyBusiness(HttpServletRequest request) throws Exception{
     	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
+    	ModelAndView mv = new ModelAndView("jsonView");
     	Map<String, Object> commandMap = new HashMap<String, Object>();
     	String userID;
     	String businessID;
@@ -88,10 +89,15 @@ public class JieunController {
 	        commandMap.put("BUSINESSID", businessID);
 	        
 	        service.insertMyBusiness(commandMap);
+	        mv.addObject("result", "즐겨찾기가 등록되었습니다.");
+	        return mv;
 	        
-    	} catch (Exception e) {  	}
+    	} catch (Exception e) {  
+    		 mv.addObject("result", "이미 등록되었습니다.");
+    		return mv;
+    	}
     	
-    //	return mv;
+    	
     }
     
     /**
