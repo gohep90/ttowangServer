@@ -26,4 +26,8 @@ public class JakyunDao extends abDAO{
 	public void updateUser(Map<String, Object> map) {
 		update("jakyun.updateUser", map);
 	}
+	
+	public void myInfoEdit(Map<String, Object> map) {
+		update("jakyun.myInfoEdit", map);
+	}
 }
