@@ -59,6 +59,20 @@
 				userTel=#{userTel}
 		]]>
 	</update>
+	
+	<update id="myInfoEdit" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				user
+			SET
+				userName=#{userName},
+				userBirth=#{userBirth},
+				userGender=#{userGender},
+				userEmail=#{userEmail}
+			WHERE
+				userTel=#{userTel}
+		]]>
+	</update>
 		
 </mapper>
 
