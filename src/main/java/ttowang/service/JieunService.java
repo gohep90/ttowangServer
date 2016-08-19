@@ -36,4 +36,9 @@ public class JieunService {
 		// TODO Auto-generated method stub
 		return dao.selectMyCoupon(commandMap);
 	}
+
+	public String selectCheckMyMembership(Map<String, Object> commandMap) {
+		// TODO Auto-generated method stub
+		return dao.selectCheckMyMembership(commandMap);
+	}
 }

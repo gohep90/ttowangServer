@@ -116,12 +116,25 @@
         ]]>
     </select>
     
+     <select id="selectCheckMyMembership" parameterType="hashmap" resultType="String">
+        <![CDATA[
+        	SELECT
+     			userId
+    		FROM
+    			membership
+    		WHERE
+    			userId = #{userId}
+    		AND
+    			businessId = #{businessId}
+        ]]>
+    </select>
+    
     <insert id="insertMyBusiness" parameterType="hashmap">
     	<![CDATA[
     		INSERT
-    			INTO MEMBERSHIP
+    			INTO membership
     		VALUES
-    			( #{USERID} , #{BUSINESSID} )
+    			( #{userId} , #{businessId} )
     	]]>
     </insert>
     

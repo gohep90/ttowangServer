@@ -43,7 +43,6 @@ public class JieunController {
 	        
 	        list = service.selectMyBusinessList(commandMap);
 	        coupon = service.selectMyCoupon(commandMap);
-	        System.out.println("coupon = "+coupon);
 	        
     	} catch (Exception e) {}
         	
@@ -74,30 +73,29 @@ public class JieunController {
      */
     //insertMyBusiness.do?USERID=3&BUSINESSID=11
     @RequestMapping(value="/insertMyBusiness.do")
-    public ModelAndView insertMyBusiness(HttpServletRequest request) throws Exception{
+    public ModelAndView insertMyBusiness(Map<String, Object> commandMap,HttpServletRequest request) throws Exception{
     	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
     	ModelAndView mv = new ModelAndView("jsonView");
-    	Map<String, Object> commandMap = new HashMap<String, Object>();
-    	String userID;
-    	String businessID;
     	
     	try {
-	    	userID = request.getParameter("USERID");
-	        businessID = request.getParameter("BUSINESSID");
+    		String	userID = request.getParameter("userId");
+    		String businessID = request.getParameter("businessId");
+    		String result ="초기";
 	        
-	        commandMap.put("USERID", userID);
-	        commandMap.put("BUSINESSID", businessID);
+	        commandMap.put("userId", userID);
+	        commandMap.put("businessId", businessID);
 	        
-	        service.insertMyBusiness(commandMap);
-	        mv.addObject("result", "즐겨찾기가 등록되었습니다.");
-	        return mv;
+	        if(service.selectCheckMyMembership(commandMap)==null){
+	        	service.insertMyBusiness(commandMap);
+	        	result="즐겨찾기가 등록되었습니다.";
+	        }else{
+	        	result="이미 등록되었습니다.";
+	        }
+	        mv.addObject("result",result);
 	        
-    	} catch (Exception e) {  
-    		 mv.addObject("result", "이미 등록되었습니다.");
-    		return mv;
-    	}
+    	} catch (Exception e) {}
     	
-    	
+    	return mv;
     }
     
     /**
