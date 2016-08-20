@@ -112,7 +112,7 @@
         	SELECT
      			*
     		FROM
-    			MEMBERSHIP		
+    			membership		
         ]]>
     </select>
     
@@ -141,7 +141,7 @@
     <delete id="deleteMyBusiness" parameterType="hashmap">
     	<![CDATA[
     		DELETE FROM
-    			MEMBERSHIP
+    			membership
     		WHERE
     			userID = #{USERID}
 			AND
