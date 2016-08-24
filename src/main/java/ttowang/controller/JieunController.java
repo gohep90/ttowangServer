@@ -106,7 +106,6 @@ public class JieunController {
     //deleteMyBusiness.do?USERID=3&BUSINESSID=11
     @RequestMapping(value="/deleteMyBusiness.do")
     public void deleteMyBusiness(HttpServletRequest request) throws Exception{
-    	//ModelAndView mv = new ModelAndView("redirect:/checkMembership.do");
     	Map<String, Object> commandMap = new HashMap<String, Object>();
     	String userID;
     	String businessID;
@@ -121,8 +120,65 @@ public class JieunController {
 	        service.deleteMyBusiness(commandMap);
 	        
     	} catch (Exception e) {}
+    }
+    
+    /**
+     * 스탬프 리스트 전송 
+     * @param BUSINESSID
+     * @return jsonView
+     */
+	//selectRecentList.do?BUSINESSID=11
+    @RequestMapping(value="selectRecentList.do")
+    public ModelAndView selectRecentList(HttpServletRequest request) throws Exception{
+        ModelAndView mv = new ModelAndView("jsonView");
+        Map<String, Object> commandMap = new HashMap<String, Object>();
+        List<Map<String,Object>> list = null;
+        String businessID;        
+        
+        try {
+        	businessID = (String) request.getParameter("BUSINESSID");
+        	System.out.println(businessID);
+        	
+	        commandMap.put("BUSINESSID", businessID);
+	        
+	        list = service.selectRecentList(commandMap);
+    	} catch (NullPointerException e) {System.out.println("겔겔");}
+
+        mv.addObject("list", list);
+        return mv;
+    }
+    
+    /**
+     * 스탬프 리스트 삭제 
+     * @param1 USERID
+     * @param2 BUSINESSID
+     * @param3 STAMPDATE
+     * @return selectRecentList.do?BUSINESS=??
+     */
+	//deleteRecentStamp.do?USERID=2&BUSINESSID=11&STAMPDATE=20160726&STAMPNUM=1111
+    @RequestMapping(value="/deleteRecentStamp.do")
+    public ModelAndView deleteRecentStamp(HttpServletRequest request) throws Exception{
+    	ModelAndView mv;
+    	Map<String, Object> commandMap = new HashMap<String, Object>();
+    	String userID,stampDate,stampNum;
+    	String businessID = null;
     	
-    	//return mv;
+    	try {
+	    	userID = request.getParameter("USERID");
+	        businessID = request.getParameter("BUSINESSID");
+	        stampDate = request.getParameter("STAMPDATE");
+	        stampNum = request.getParameter("STAMPNUM");
+	        
+	        commandMap.put("USERID", userID);
+	        commandMap.put("BUSINESSID", businessID);
+	        commandMap.put("STAMPDATE", stampDate);
+	        commandMap.put("STAMPNUM", stampNum);
+	        
+	        service.deleteRecentStamp(commandMap);
+    	} catch (Exception e) {}
+    	
+    	mv = new ModelAndView("redirect:/selectRecentList.do?BUSINESSID="+businessID);
+    	return mv;
     }
 
 }
