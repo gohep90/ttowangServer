@@ -148,5 +148,36 @@
 				businessID = #{BUSINESSID}
     	]]>
     </delete>
+    
+    <!-- COUPON으로 지정된 Stamp는 TRUE로 ( 스탬프 삭제불가이기때문 ) -->
+    <select id="selectRecentList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+	        SELECT 
+			    U.userName,
+			    S.stampDate,
+			    U.userId,
+			    IF(S.couponNum IS NULL,
+			        'FALSE',
+			        'TRUE') couponUsing,
+			    S.stampNum
+			FROM
+			    user U,
+			    stamplist S
+			WHERE
+			    S.businessId = #{BUSINESSID}
+			        AND U.userId = S.userId
+			ORDER BY S.stampNum
+        ]]>
+    </select>
+    
+    <delete id="deleteRecentStamp" parameterType="hashmap">
+    	<![CDATA[
+    		DELETE FROM stamplist 
+			WHERE
+			    userID = #{USERID} AND businessID = #{BUSINESSID}
+			    AND stampDate = #{STAMPDATE}
+			    AND stampNum = #{STAMPNUM}
+    	]]>
+    </delete>
 </mapper>
 
