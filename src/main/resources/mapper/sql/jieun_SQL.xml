@@ -2,51 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="jieun">
-
-<!-- 단골 가맹점 리스트 
-	<select id="selectMyBusinessList" parameterType="hashmap" resultType="hashmap">
-        <![CDATA[
-        	SELECT 
-		    S.userID,
-		    B.businessName,
-		    B.businessAddress,
-		    B.businessPhoto,
-		    COUNT(IF(S.couponNum IS NULL, 1, NULL)) stampCount,
-		    COUNT(*) totalStampCount
-		FROM
-		    stamplist S,
-		    business B
-		WHERE
-		    S.businessId = B.businessId
-		AND
-			S.userID = #{USERID}
-		GROUP BY S.businessId
-		UNION
-		SELECT 
-		    M.userID, 
-		    B.businessName, 
-		    B.businessAddress,
-		    B.businessPhoto,
-		    @stampCount := 0 stampCount,
-		    @totalStampCount := 0 totalStampCount
-		FROM
-		    membership M,
-		    business B
-		WHERE
-		    M.userID = #{USERID}
-		        AND M.businessId = B.businessId
-		        AND M.businessId NOT IN (SELECT 
-		            S.businessId
-		        FROM
-		            stamplist S
-		        WHERE
-		            S.businessId = B.businessId
-		                AND S.userID  =#{USERID}
-		        GROUP BY S.businessId)
-        ]]>
-    </select>
-   --> 
-    
     <select id="selectMyBusinessList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
        SELECT 
