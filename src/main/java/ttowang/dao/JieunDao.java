@@ -36,6 +36,12 @@ public class JieunDao extends abDAO{
 		return (List<Map<String, Object>>)selectList("jieun.selectMyCoupon", map);
 	}
 
-	
-	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectRecentList(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectList("jieun.selectRecentList", map);
+	}
+
+	public void deleteRecentStamp(Map<String, Object> map) {
+		delete("jieun.deleteRecentStamp",map);
+	}
 }
