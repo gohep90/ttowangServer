@@ -41,4 +41,12 @@ public class JieunService {
 		// TODO Auto-generated method stub
 		return dao.selectCheckMyMembership(commandMap);
 	}
+	
+	public List<Map<String, Object>> selectRecentList(Map<String, Object> map) throws Exception{
+		return dao.selectRecentList(map);
+	}
+
+	public void deleteRecentStamp(Map<String, Object> map) {
+		dao.deleteRecentStamp(map);
+	}
 }
