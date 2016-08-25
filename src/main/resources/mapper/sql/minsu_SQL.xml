@@ -14,7 +14,7 @@
 	
 
 	<!-- 스템프 적립 일자별 seq발생 -->
-	<insert id="insertAddStamp" parameterType="map">
+	<insert id="insertAddStamp" parameterType="hashmap">
 		
 		<selectKey keyProperty="key_seq" resultType="String" order="BEFORE">
 				<![CDATA[
@@ -44,7 +44,7 @@
 	</insert>	
 	
 	<!-- 정회원 확인-->
-	<select id="selectCheck" parameterType="map" resultType="String">
+	<select id="selectCheck" parameterType="hashmap" resultType="String">
 		<![CDATA[
 			SELECT
 			    userId

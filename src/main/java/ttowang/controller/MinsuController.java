@@ -48,32 +48,24 @@ public class MinsuController {
 		try{
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			//String businessId=request.getParameter("businessId");
-			//String userTel=request.getParameter("userTel");
-			//String count=request.getParameter("count");
-			
-			//test data
-			String businessId="1";
-			String userTel="01035620373";
+			String businessId=request.getParameter("businessId");
+			String userTel=request.getParameter("userTel");
+			String count=request.getParameter("stampNum");
 			
 			map.put("businessId", businessId);
 			map.put("userTel", userTel);
-
-			String check=service.selectCheck(map);//정회원인지 확인!!
 			
-			//System.out.println(check);
-			
-			if(check==null){//정회원이 아니라면(준회원)
+			if(service.selectCheck(map)==null){// 정회원인지 확인!!  정회원이 아니라면(준회원)
 				service.insertUser(map);	//준회원 등록
 				service.insertJunMembership(map);	//준회원 멤버쉽 등록!!
 			}
 
 			//여러게 스템프 적립시!!
-			for(int i=0;i<2;i++){
+			for(int i=0;i<Integer.parseInt(count);i++){
 				service.insertAddStamp(map);
 			}
 					
-						
+			System.out.println("addStamp 성공");
 		}catch(Exception e){
 			System.out.println("addStamp 실패");
 		}
