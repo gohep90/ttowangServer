@@ -128,7 +128,7 @@ public class JieunController {
      * @return jsonView
      */
 	//selectRecentList.do?BUSINESSID=11
-    @RequestMapping(value="selectRecentList.do")
+    @RequestMapping(value="/selectRecentList.do")
     public ModelAndView selectRecentList(HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("jsonView");
         Map<String, Object> commandMap = new HashMap<String, Object>();
