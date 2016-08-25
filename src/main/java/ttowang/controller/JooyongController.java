@@ -201,10 +201,13 @@ public class JooyongController {
 		//모든 쿠폰 리스트
 		//모든 쿠폰 상세 정보를 출력한다.
 		@RequestMapping(value="/couponList.do")
-		public ModelAndView couponList(Map<String, Object> commandMap)throws Exception {
+		public ModelAndView couponList(Map<String, Object> commandMap,HttpServletRequest request)throws Exception {
 			
 			try{
 				ModelAndView mv = new ModelAndView("jsonView");
+				
+				String businessId = request.getParameter("businessId");
+				commandMap.put("businessId", businessId);
 
 				List<Map<String, Object>> list = service.selectcouponList(commandMap);
 				mv.addObject("couponList", list);

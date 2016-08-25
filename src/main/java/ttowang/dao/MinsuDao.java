@@ -31,6 +31,5 @@ public class MinsuDao extends abDAO{
 		insert("minsu.insertJunMembership", map);
 	}
 
-
-
+	
 }

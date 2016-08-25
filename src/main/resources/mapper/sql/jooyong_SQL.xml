@@ -74,7 +74,9 @@
 	<!-- 모든 쿠폰 리스트  -->
 	<select id="selectcouponList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from coupon order by businessId desc, couponCode asc
+			select * 
+			from coupon
+			where businessId = #{businessId}
 		]]>
 	</select>
 	
