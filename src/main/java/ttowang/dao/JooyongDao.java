@@ -47,6 +47,18 @@ public class JooyongDao extends abDAO{
 		return (List<Map<String,Object>>)selectList("jooyong.businessSearch", commandMap);
 	}
 	
+	
+	//내 모든 가맹점 
+	public List<Map<String, Object>> businessAll(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("jooyong.businessAll", map);
+	}
+
+	//내 모든 가맹점 사진
+	public List<Map<String, Object>> businessAllPhoto(Map<String, Object> map) {
+		return (List<Map<String,Object>>)selectList("jooyong.businessAllPhoto", map);
+	}
+	
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 	//모든 쿠폰 리스트

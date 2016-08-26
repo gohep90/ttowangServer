@@ -68,6 +68,32 @@
 		]]>
 	</select>
 	
+	
+	<!-- 내 모든 가맹점 -->
+	<select id="businessAll" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * 
+			from business
+			where userId = #{userId}
+			group by businessId
+			order by businessId desc
+			
+		]]>
+	</select>
+	
+	<!-- 내 모든 가맹점 사진 -->
+	<select id="businessAllPhoto" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT photo.businessId,seq,photoName
+			FROM photo
+			JOIN membership 
+			ON photo.businessId = membership.businessId
+			where userId = #{userId}
+			
+		]]>
+	</select>
+
+	
 <!--                  쿠폰 혜택 테이블                                       -->
 
 

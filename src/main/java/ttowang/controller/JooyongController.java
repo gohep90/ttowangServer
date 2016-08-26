@@ -196,6 +196,37 @@ public class JooyongController {
 			}
 		}
 		
+		
+		//내 모든 가맹점 정보
+		//businessId를 받으면 businessId의 상세 정보 뿌려줌
+		@RequestMapping(value="/businessAll.do",method= RequestMethod.POST)
+		public ModelAndView businessAll(Map<String, Object> commandMap,HttpServletRequest request)throws Exception {
+			
+			try{
+				
+				ModelAndView mv = new ModelAndView("jsonView");
+				
+				String userId = request.getParameter("userId");
+				
+				commandMap.put("userId", userId);
+	
+				List<Map<String, Object>> list = service.businessAll(commandMap);
+				List<Map<String, Object>> photo = service.businessAllPhoto(commandMap);
+				
+				mv.addObject("List", list);
+				mv.addObject("Photo", photo);
+				
+				
+				System.out.println("businessAll 성공");
+				return mv;
+				
+			}catch(Exception e){
+				
+				System.out.println("businessAll 실패");
+				return null;
+				
+			}
+		}
 //////////////////////////////////////////////////////////////////////////////////////////
 		
 		//모든 쿠폰 리스트

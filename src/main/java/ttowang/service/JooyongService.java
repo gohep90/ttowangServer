@@ -52,7 +52,19 @@ public class JooyongService {
 	public List<Map<String, Object>> businessSearch(Map<String, Object> Map) throws Exception {
 		return dao.businessSearch(Map);
 	}
+	
+	
+	//내 가맹점 상세정보
+	public List<Map<String, Object>> businessAll(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.businessAll(map);
+	}
 		
+	
+	//내 가맹점 모든 사진
+	public List<Map<String, Object>> businessAllPhoto(Map<String, Object> map) {
+		return dao.businessAllPhoto(map);
+	}
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 	//모든 쿠폰 리스트
