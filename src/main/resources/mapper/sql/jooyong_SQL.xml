@@ -61,7 +61,7 @@
 		
 			update business 
 			set 
-			businessLicense = #{businessLicense}, businessName = #{businessName}, businessTel = #{businessTel}, businessInfo = #{businessInfo}, businessTime = #{businessTime}, businessAddress = #{businessAddress}, businessMenu = #{businessMenu}, businessBenefit = #{businessBenefit}, businessPhoto = #{businessPhoto}, businessLat = #{businessLat}, businessLng = #{businessLng}, userId = #{userId}, businessType = #{businessType}
+			businessLicense = #{businessLicense}, businessName = #{businessName}, businessTel = #{businessTel}, businessInfo = #{businessInfo}, businessTime = #{businessTime}, businessAddress = #{businessAddress}, businessMenu = #{businessMenu}, businessBenefit = #{businessBenefit}, businessLat = #{businessLat}, businessLng = #{businessLng}, userId = #{userId}, businessType = #{businessType}, businessGroup = #{businessGroup}
 			where 
 			businessId = #{businessId}
 			
