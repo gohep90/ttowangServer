@@ -84,11 +84,10 @@
 	<!-- 내 모든 가맹점 사진 -->
 	<select id="businessAllPhoto" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT photo.businessId,seq,photoName
+			SELECT photo.businessId, seq, photoName
 			FROM photo
-			JOIN membership 
-			ON photo.businessId = membership.businessId
-			where userId = #{userId}
+			JOIN business ON photo.businessId = business.businessId
+			WHERE business.userId = NULL 
 			
 		]]>
 	</select>
