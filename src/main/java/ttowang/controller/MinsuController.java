@@ -107,7 +107,6 @@ public class MinsuController {
     		String couponNum = businessId + (System.currentTimeMillis()%10000);
     		String result="초기";
     		
-    		
     		map.put("userId", userId);
     		map.put("businessId", businessId);
     		map.put("couponCode", couponCode);
