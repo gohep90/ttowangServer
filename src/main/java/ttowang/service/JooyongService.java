@@ -36,9 +36,17 @@ public class JooyongService {
 	}
 	
 	
+	
 	//가맹점 등록
 	public void businessAdd(Map<String, Object> map) {
 		dao.businessAdd(map);
+	}
+	
+	
+	//가맹점 등록 후 아이디 받아오기
+	public List<Map<String, Object>> businessAddplus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.businessAddplus(map);
 	}
 	
 	

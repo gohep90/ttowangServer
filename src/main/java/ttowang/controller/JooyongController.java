@@ -76,7 +76,85 @@ public class JooyongController {
 				
 			}
 		}
+		
+		
+		
+		
+		//가맹점 등록
+		//정보 받으면 등록
+		//businessId를 받으면 businessId의 상세 정보 뿌려줌
+		@RequestMapping(value="/businessAdd.do",method= RequestMethod.POST)
+		public ModelAndView businessAdd(Map<String, Object> commandMap,HttpServletRequest request)throws Exception {
+			
+			try{
 				
+				ModelAndView mv = new ModelAndView("jsonView");
+				
+				String businessLicense = request.getParameter("businessLicense");
+				String businessName = request.getParameter("businessName");
+				String businessTel = request.getParameter("businessTel");
+				String businessInfo = request.getParameter("businessInfo");
+				String businessTime = request.getParameter("businessTime");
+				String businessAddress = request.getParameter("businessAddress");
+				String businessMenu = request.getParameter("businessMenu");
+				String businessBenefit = request.getParameter("businessBenefit");
+				
+				String businessLat = request.getParameter("businessLat");
+				String businessLng = request.getParameter("businessLng");
+				String userId = request.getParameter("userId");
+				String businessType = request.getParameter("businessType");
+			
+				String businessGroup = request.getParameter("businessGroup");
+				System.out.println("businessAdd 데이터 받아옥 성공");
+			
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				map.put("businessLicense", businessLicense);
+				map.put("businessName", businessName);
+				map.put("businessTel", businessTel);
+				map.put("businessInfo", businessInfo);
+				map.put("businessTime", businessTime);
+				map.put("businessAddress", businessAddress);
+				map.put("businessMenu", businessMenu);
+				map.put("businessBenefit", businessBenefit);
+				
+				map.put("businessLat", businessLat);
+				map.put("businessLng", businessLng);
+				map.put("userId", userId);
+				map.put("businessType", businessType);
+				
+				map.put("businessGroup", businessGroup);
+				
+				System.out.println("businessAdd map 넣기성공");
+				
+				service.businessAdd(map);
+				
+				System.out.println("businessAdd 디비 넣기 성공");
+				
+				commandMap.put("businessLicense", businessLicense);
+				commandMap.put("businessName", businessName);
+				commandMap.put("userId", userId);
+				
+				System.out.println("businessAdd commandMap 넣기 성공");
+				
+				List<Map<String, Object>> list = service.businessAddplus(commandMap);
+				System.out.println("businessAdd 아이디 받아오기 성공");
+				
+				mv.addObject("List", list);
+				
+				
+				System.out.println("businessAdd 성공");
+				return mv;
+				
+			}catch(Exception e){
+				
+				System.out.println("businessAdd 실패");
+				return null;
+				
+			}
+		}
+		
+		/*	
 		//가맹점 등록
 		//정보 받으면 등록
 		@RequestMapping("/businessAdd.do")
@@ -91,11 +169,13 @@ public class JooyongController {
 				String businessAddress = request.getParameter("businessAddress");
 				String businessMenu = request.getParameter("businessMenu");
 				String businessBenefit = request.getParameter("businessBenefit");
-				String businessPhoto = request.getParameter("businessPhoto");
+				
 				String businessLat = request.getParameter("businessLat");
 				String businessLng = request.getParameter("businessLng");
 				String userId = request.getParameter("userId");
 				String businessType = request.getParameter("businessType");
+			
+				String businessGroup = request.getParameter("businessGroup");
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 				
@@ -107,11 +187,13 @@ public class JooyongController {
 				map.put("businessAddress", businessAddress);
 				map.put("businessMenu", businessMenu);
 				map.put("businessBenefit", businessBenefit);
-				map.put("businessPhoto", businessPhoto);
+				
 				map.put("businessLat", businessLat);
 				map.put("businessLng", businessLng);
 				map.put("userId", userId);
 				map.put("businessType", businessType);
+				
+				map.put("businessGroup", businessGroup);
 				
 				service.businessAdd(map);
 				
@@ -122,7 +204,7 @@ public class JooyongController {
 				System.out.println("businessAdd 실패");
 			}
 		}
-		
+		*/
 		//가맹점 수정
 		//우선 가맹점 상세정보를 businessId로 받은 다음에 정보를 입력하면 businessId를 찾아서 정보 삽입
 		@RequestMapping("/businessUpdate.do")

@@ -34,6 +34,14 @@ public class JooyongDao extends abDAO{
 	public void businessAdd(Map<String, Object> map) {
 		insert("jooyong.businessAdd", map);
 	}
+		
+	//가맹점 등록후 아이디 받아오기
+	public List<Map<String, Object>> businessAddplus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("jooyong.businessAddplus", map);
+	}
+	
+	
 	
 	
 	//가맹점 수정

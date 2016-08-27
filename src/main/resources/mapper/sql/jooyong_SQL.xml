@@ -38,11 +38,21 @@
 	<insert id="businessAdd" parameterType="hashmap">
 		<![CDATA[
 			insert into business
-			( businessLicense, businessName, businessTel, businessInfo, businessTime, businessAddress, businessMenu, businessBenefit, businessPhoto, businessLat, businessLng, userId,businessType) 
+			( businessLicense, businessName, businessTel, businessInfo, businessTime, businessAddress, businessMenu, businessBenefit, businessLat, businessLng, userId,businessType,businessGroup) 
 			values
-			(#{businessLicense},#{businessName},#{businessTel},#{businessInfo},#{businessTime},#{businessAddress},#{businessMenu},#{businessBenefit},#{businessPhoto},#{businessLat},#{businessLng},#{userId},#{businessType})
+			(#{businessLicense},#{businessName},#{businessTel},#{businessInfo},#{businessTime},#{businessAddress},#{businessMenu},#{businessBenefit},#{businessLat},#{businessLng},#{userId},#{businessType},#{businessGroup})
 		]]>
 	</insert>	
+
+	<!-- 등록한 가맹점 아이디 가져오기 -->
+	<select id="businessAddplus" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select businessId
+			from business
+			where userId =#{userId} and businessName = #{businessName} and  businessLicense =#{businessLicense}
+		]]>
+	</select>
+
 
 
 	<!-- 가맹점 수정 -->
