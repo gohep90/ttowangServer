@@ -172,11 +172,13 @@ public class JooyongController {
 				String businessAddress = request.getParameter("businessAddress");
 				String businessMenu = request.getParameter("businessMenu");
 				String businessBenefit = request.getParameter("businessBenefit");
-				String businessPhoto = request.getParameter("businessPhoto");
+				
 				String businessLat = request.getParameter("businessLat");
 				String businessLng = request.getParameter("businessLng");
 				String userId = request.getParameter("userId");
 				String businessType = request.getParameter("businessType");
+				
+				String businessGroup = request.getParameter("businessGroup");
 				
 				map.put("businessId", businessId);
 				map.put("businessLicense", businessLicense);
@@ -187,11 +189,13 @@ public class JooyongController {
 				map.put("businessAddress", businessAddress);
 				map.put("businessMenu", businessMenu);
 				map.put("businessBenefit", businessBenefit);
-				map.put("businessPhoto", businessPhoto);
+				
 				map.put("businessLat", businessLat);
 				map.put("businessLng", businessLng);
 				map.put("userId", userId);
 				map.put("businessType", businessType);
+				
+				map.put("businessGroup", businessGroup);
 				
 				service.businessUpdate(map);
 				System.out.println("businessUpdate 성공");
