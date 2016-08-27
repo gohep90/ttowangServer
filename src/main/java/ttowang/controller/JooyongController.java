@@ -81,8 +81,7 @@ public class JooyongController {
 		
 		
 		//가맹점 등록
-		//정보 받으면 등록
-		//businessId를 받으면 businessId의 상세 정보 뿌려줌
+		//정보 받으면 등록하고 비즈니스 아이디 리턴 해주기 
 		@RequestMapping(value="/businessAdd.do",method= RequestMethod.POST)
 		public ModelAndView businessAdd(Map<String, Object> commandMap,HttpServletRequest request)throws Exception {
 			
@@ -154,57 +153,7 @@ public class JooyongController {
 			}
 		}
 		
-		/*	
-		//가맹점 등록
-		//정보 받으면 등록
-		@RequestMapping("/businessAdd.do")
-		public void businessAdd(HttpServletRequest request) throws Exception {
-			
-			try{
-				String businessLicense = request.getParameter("businessLicense");
-				String businessName = request.getParameter("businessName");
-				String businessTel = request.getParameter("businessTel");
-				String businessInfo = request.getParameter("businessInfo");
-				String businessTime = request.getParameter("businessTime");
-				String businessAddress = request.getParameter("businessAddress");
-				String businessMenu = request.getParameter("businessMenu");
-				String businessBenefit = request.getParameter("businessBenefit");
-				
-				String businessLat = request.getParameter("businessLat");
-				String businessLng = request.getParameter("businessLng");
-				String userId = request.getParameter("userId");
-				String businessType = request.getParameter("businessType");
-			
-				String businessGroup = request.getParameter("businessGroup");
-				
-				Map<String, Object> map = new HashMap<String, Object>();
-				
-				map.put("businessLicense", businessLicense);
-				map.put("businessName", businessName);
-				map.put("businessTel", businessTel);
-				map.put("businessInfo", businessInfo);
-				map.put("businessTime", businessTime);
-				map.put("businessAddress", businessAddress);
-				map.put("businessMenu", businessMenu);
-				map.put("businessBenefit", businessBenefit);
-				
-				map.put("businessLat", businessLat);
-				map.put("businessLng", businessLng);
-				map.put("userId", userId);
-				map.put("businessType", businessType);
-				
-				map.put("businessGroup", businessGroup);
-				
-				service.businessAdd(map);
-				
-				System.out.println("businessAdd 성공");
-				
-			}catch(Exception e){
-				e.printStackTrace();
-				System.out.println("businessAdd 실패");
-			}
-		}
-		*/
+		
 		//가맹점 수정
 		//우선 가맹점 상세정보를 businessId로 받은 다음에 정보를 입력하면 businessId를 찾아서 정보 삽입
 		@RequestMapping("/businessUpdate.do")
