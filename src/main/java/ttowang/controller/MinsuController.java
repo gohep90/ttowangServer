@@ -22,8 +22,7 @@ public class MinsuController {
 	@Resource(name = "MinsuService")
 	private MinsuService service;
 	
-	//전화번호를 통한 스템프 적립
-	//등록 안되있을 경우 준회원으로 회원가입!!
+	
 	@RequestMapping(value="/userTest.do")
 	public ModelAndView userTest(Map<String, Object> map)throws Exception {
 		
@@ -41,6 +40,8 @@ public class MinsuController {
 		}
 	}
 	
+	//전화번호를 통한 스템프 적립
+	//등록 안되있을 경우 준회원으로 회원가입!!
 	//전화번호를 통한 (정회원)스템프 적립
 	@RequestMapping(value="/addStamp.do")
 	public void addStamp(HttpServletRequest request)throws Exception {
@@ -70,5 +71,68 @@ public class MinsuController {
 			System.out.println("addStamp 실패");
 		}
 	}
+	
+	
+	//(스피너) 내가 등록한 가맹점 리스트
+	@RequestMapping(value="/spinnerList.do")
+	public ModelAndView spinnerList(Map<String, Object> map, HttpServletRequest request)throws Exception {
+		
+		try{
+			ModelAndView mv = new ModelAndView("jsonView");
+			String userId=request.getParameter("userId");
+			
+			map.put("userId", userId);
+			
+			List<Map<String, Object>> list = service.selectSpinnerList(map);
+			mv.addObject("spinnerList", list);
+		
+			System.out.println("spinnerList 성공");
+			return mv;
+					
+		}catch(Exception e){
+			System.out.println("spinnerList 실패");
+			return null;
+		}
+	}
+	
+	@RequestMapping(value="/stampToCoupon.do")
+    public ModelAndView stampToCoupon(Map<String, Object> map,HttpServletRequest request) throws Exception{
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	
+    	try {
+    		String userId = request.getParameter("userId");
+    		String businessId = request.getParameter("businessId");
+    		String couponCode = request.getParameter("couponCode");
+    		String stampNeed = request.getParameter("stampNeed");
+    		String couponNum = businessId + (System.currentTimeMillis()%10000);
+    		String result="초기";
+    		
+    		System.out.println("--------------------");
+    		System.out.println(userId);
+    		System.out.println(businessId);
+    		System.out.println(couponCode);
+    		System.out.println(stampNeed);
+    		System.out.println(couponNum);
+    		
+    		map.put("userId", userId);
+    		map.put("businessId", businessId);
+    		map.put("couponCode", couponCode);
+    		map.put("stampNeed", Integer.parseInt(stampNeed));
+    		map.put("couponNum", couponNum);
+    		
+    		if(Integer.parseInt(service.selectCheckStampNeed(map)) < Integer.parseInt(stampNeed)){
+    			result="필요한 스탬프가 부족합니다.";
+	        }else{
+	        	service.insertUserCoupon(map);   
+	    		service.updateStampList(map);
+	        	result="쿠폰 전환이 완료되었습니다.";
+	        }
+	        mv.addObject("result",result);
+	        
+    	} catch (Exception e) {}
+    	
+    	return mv;
+    }
+	
 	
 }

@@ -321,7 +321,6 @@ public class JooyongController {
 			
 			try{
 				String businessId = request.getParameter("businessId");
-				String couponCode = request.getParameter("couponCode");
 				String couponName = request.getParameter("couponName");
 				String stampNeed = request.getParameter("stampNeed");
 				
@@ -329,7 +328,6 @@ public class JooyongController {
 				Map<String, Object> map = new HashMap<String, Object>();
 				
 				map.put("businessId", businessId);
-				map.put("couponCode", couponCode);
 				map.put("couponName", couponName);
 				map.put("stampNeed", stampNeed);
 				

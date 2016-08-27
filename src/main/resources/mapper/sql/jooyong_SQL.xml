@@ -112,6 +112,7 @@
 			select * 
 			from coupon
 			where businessId = #{businessId}
+			and couponDelete = 1
 		]]>
 	</select>
 	
@@ -125,11 +126,21 @@
 	
 	<!-- 쿠폰 등록  -->
 	<insert id="couponAdd" parameterType="hashmap">
+		<selectKey keyProperty="key_seq" resultType="String" order="BEFORE">
+				<![CDATA[
+				select ifnull(max(couponCode),0)+1 seq
+				from coupon
+				where 
+				  businessId = #{businessId}
+			]]>
+        </selectKey>
+	
+	
 		<![CDATA[
 			insert into coupon
-			( businessId, couponCode, couponName, stampNeed) 
+			( businessId, couponCode, couponName, stampNeed, couponDelete) 
 			values
-			(#{businessId}, #{couponCode}, #{couponName}, #{stampNeed})
+			(#{businessId}, #{key_seq}, #{couponName}, #{stampNeed},1)
 		]]>
 	</insert>	
 	
@@ -147,16 +158,17 @@
 	</update>	
 	
 	<!-- 쿠폰 삭제  -->
-	<delete id="couponDelete" parameterType="hashmap">
+	<update id="couponDelete" parameterType="hashmap">
 		<![CDATA[
 		
-			delete
-			from coupon
+			update coupon
+			set
+			couponDelete = 0
 			where
 			businessId = #{businessId} and couponCode = #{couponCode}
 			
 		]]>
-	</delete>	
+	</update>	
 	
 </mapper>
 

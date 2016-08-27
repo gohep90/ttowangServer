@@ -37,6 +37,22 @@ public class MinsuService {
 		
 	}
 
+	public List<Map<String, Object>> selectSpinnerList(Map<String, Object> map) {
+		return dao.selectSpinnerList(map);
+	}
+
+	public void insertUserCoupon(Map<String, Object> map) {
+		dao.insertUserCoupon(map);
+	}
+
+	public void updateStampList(Map<String, Object> map) {
+		dao.updateStampList(map);
+	}
+
+	public String selectCheckStampNeed(Map<String, Object> map) {
+		return dao.selectCheckStampNeed(map);
+	}
+
 
 
 }

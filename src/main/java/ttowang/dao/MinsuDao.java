@@ -31,5 +31,22 @@ public class MinsuDao extends abDAO{
 		insert("minsu.insertJunMembership", map);
 	}
 
+	public List<Map<String, Object>> selectSpinnerList(Map<String, Object> map) {
+		return (List<Map<String,Object>>)selectList("minsu.selectSpinnerList", map);
+	}
+
+	public void insertUserCoupon(Map<String, Object> map) {
+		insert("minsu.insertUserCoupon", map);
+	}
+
+	public void updateStampList(Map<String, Object> map) {
+		update("minsu.updateStampList", map);
+		
+	}
+
+	public String selectCheckStampNeed(Map<String, Object> map) {
+		return (String)selectOne("minsu.selectCheckStampNeed", map);
+	}
+
 	
 }

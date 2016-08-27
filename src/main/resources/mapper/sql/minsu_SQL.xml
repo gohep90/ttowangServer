@@ -86,5 +86,68 @@
 	</insert>	
 	
 	
+	<select id="selectSpinnerList" parameterType="hashmap" resultType="map">
+		<![CDATA[
+			SELECT
+			    businessId, businessName
+			FROM
+			    business
+			WHERE
+				userId = #{userId}
+		]]>
+	</select>
+	
+	
+	<!-- 스탬프 제고 확인-->
+	<select id="selectCheckStampNeed" parameterType="hashmap" resultType="String">
+		<![CDATA[
+			select count(*) count
+			from stamplist
+			where couponNum is null
+			and userId=#{userId}
+			and businessId =#{businessId}
+		]]>
+	</select>
+	
+	
+	<!-- 스탬프 쿠폰으로 변환-->
+	<insert id="insertUserCoupon" parameterType="hashmap">
+		<![CDATA[
+			INSERT
+				INTO couponlist(
+			    	couponNum,
+			    	businessId,
+			    	couponCode,
+			    	couponUse
+			    	)
+				VALUES(
+					#{couponNum},
+					#{businessId},
+					#{couponCode},
+					1
+			    )
+		]]>
+	</insert>	
+	
+	
+	<!-- 스탬프 사용으로 변환-->
+	<update id="updateStampList" parameterType="hashmap">
+		<![CDATA[
+			update stamplist
+			set couponNum=#{couponNum}
+			where
+				businessId=#{businessId}
+			and
+				userId=#{userId}
+			and
+				couponNum is null
+			limit #{stampNeed}
+				
+		]]>
+	</update>	
+	
+	
+	
+	
 </mapper>
 
