@@ -127,5 +127,32 @@ public class MinsuController {
     	return mv;
     }
 	
+	@RequestMapping(value="/giftStamp.do")
+    public ModelAndView giftStamp(Map<String, Object> map,HttpServletRequest request) throws Exception{
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	
+    	try {
+    		String userId = request.getParameter("userId");
+    		String businessId = request.getParameter("businessId");
+    		String userTel = request.getParameter("userTel");
+    		String result="초기";
+    		
+    		map.put("userId", userId);
+    		map.put("businessId", businessId);
+    		map.put("userTel", userTel);
+    		
+    		if(1 < 2){
+    			result="필요한 스탬프가 부족합니다.";
+	        }else{
+	        	service.insertUserCoupon(map);   
+	    		service.updateStampList(map);
+	        	result="쿠폰 전환이 완료되었습니다.";
+	        }
+	        mv.addObject("result",result);
+	        
+    	} catch (Exception e) {}
+    	
+    	return mv;
+    }
 	
 }
