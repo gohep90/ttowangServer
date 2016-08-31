@@ -25,10 +25,11 @@ public class MinsuController {
 	
 	@RequestMapping(value="/userTest.do")
 	public ModelAndView userTest(Map<String, Object> map)throws Exception {
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<Map<String, Object>> list =null;
 		
 		try{
-			ModelAndView mv = new ModelAndView("jsonView");
-			List<Map<String, Object>> list = service.selectUserTest(map);
+			list = service.selectUserTest(map);
 			mv.addObject("userTest", list);
 		
 			System.out.println("userTest 성공");
@@ -46,13 +47,13 @@ public class MinsuController {
 	@RequestMapping(value="/addStamp.do")
 	public void addStamp(HttpServletRequest request)throws Exception {
 			
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String businessId=request.getParameter("businessId");
+		String userTel=request.getParameter("userTel");
+		String count=request.getParameter("stampNum");
+		
 		try{
-			Map<String, Object> map = new HashMap<String, Object>();
-			
-			String businessId=request.getParameter("businessId");
-			String userTel=request.getParameter("userTel");
-			String count=request.getParameter("stampNum");
-			
 			map.put("businessId", businessId);
 			map.put("userTel", userTel);
 			
@@ -76,14 +77,13 @@ public class MinsuController {
 	//(스피너) 내가 등록한 가맹점 리스트
 	@RequestMapping(value="/spinnerList.do")
 	public ModelAndView spinnerList(Map<String, Object> map, HttpServletRequest request)throws Exception {
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<Map<String, Object>> list =null;
+		String userId=request.getParameter("userId");
 		
 		try{
-			ModelAndView mv = new ModelAndView("jsonView");
-			String userId=request.getParameter("userId");
-			
 			map.put("userId", userId);
-			
-			List<Map<String, Object>> list = service.selectSpinnerList(map);
+			list = service.selectSpinnerList(map);
 			mv.addObject("spinnerList", list);
 		
 			System.out.println("spinnerList 성공");
@@ -95,18 +95,19 @@ public class MinsuController {
 		}
 	}
 	
+	// 스탬프 쿠폰 전환
 	@RequestMapping(value="/stampToCoupon.do")
     public ModelAndView stampToCoupon(Map<String, Object> map,HttpServletRequest request) throws Exception{
     	ModelAndView mv = new ModelAndView("jsonView");
     	
+    	String userId = request.getParameter("userId");
+		String businessId = request.getParameter("businessId");
+		String couponCode = request.getParameter("couponCode");
+		String stampNeed = request.getParameter("stampNeed");
+		String couponNum = businessId + (System.currentTimeMillis()%10000);
+		String result="초기";
+		
     	try {
-    		String userId = request.getParameter("userId");
-    		String businessId = request.getParameter("businessId");
-    		String couponCode = request.getParameter("couponCode");
-    		String stampNeed = request.getParameter("stampNeed");
-    		String couponNum = businessId + (System.currentTimeMillis()%10000);
-    		String result="초기";
-    		
     		map.put("userId", userId);
     		map.put("businessId", businessId);
     		map.put("couponCode", couponCode);
@@ -127,16 +128,19 @@ public class MinsuController {
     	return mv;
     }
 	
+	
+	// 스탬프 선물
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/giftStamp.do")
     public ModelAndView giftStamp(Map<String, Object> map,HttpServletRequest request) throws Exception{
     	ModelAndView mv = new ModelAndView("jsonView");
     	
+    	String userId = request.getParameter("userId");
+		String businessId = request.getParameter("businessId");
+		String userTel = request.getParameter("userTel");
+		String result="초기";
+    	
     	try {
-    		String userId = request.getParameter("userId");
-    		String businessId = request.getParameter("businessId");
-    		String userTel = request.getParameter("userTel");
-    		String result="초기";
-    		
     		map.put("userId", userId);
     		map.put("businessId", businessId);
     		map.put("userTel", userTel);
