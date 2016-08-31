@@ -32,13 +32,15 @@
 			    	userId,
 			    	businessId,
 			    	stampDate,
-			    	stampNum
+			    	stampNum,
+			    	stampTime
 			    	)
 				VALUES(
 					(select userId from user where userTel=#{userTel}),
 			    	#{businessId},
 			    	curdate(),
-			    	#{key_seq}
+			    	#{key_seq},
+			    	curtime()
 			    )
 		]]>
 	</insert>	
