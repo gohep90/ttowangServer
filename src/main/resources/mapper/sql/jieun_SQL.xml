@@ -112,14 +112,15 @@
 			    IF(S.couponNum IS NULL,
 			        'FALSE',
 			        'TRUE') couponUsing,
-			    S.stampNum
+			    S.stampNum,
+    			left(S.stampTime, 5) stampTime
 			FROM
 			    user U,
 			    stamplist S
 			WHERE
 			    S.businessId = #{BUSINESSID}
 			        AND U.userId = S.userId
-			ORDER BY S.stampNum
+			ORDER BY S.stampDate DESC, S.stampNum DESC
         ]]>
     </select>
     
