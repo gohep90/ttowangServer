@@ -392,5 +392,60 @@ public class JooyongController {
 				System.out.println("couponDelete 실패");
 			}
 		}	
+		
+		
+		
+		
+		//직원 추가
+		@RequestMapping("/staffAdd.do")
+	    public ModelAndView giftStamp(Map<String, Object> map,HttpServletRequest request) throws Exception{
+	    	ModelAndView mv = new ModelAndView("jsonView");
+	    	
+	    	try {
+    			
+				String businessId = request.getParameter("businessId");
+				String userTel = request.getParameter("userTel");
+				String result = "";
+				
+				map.put("businessId", businessId);
+				map.put("userTel", userTel);
+				
+				if(service.searchUserIdByTel(map) == null){	//대상이 없음
+	    			System.out.println("전화번호 검색 실패");
+	    			result = "전화번호 없음";
+		        	mv.addObject("result",result);
+		        	return mv;
+		        	
+		        }else{	//대상이 있음
+		        	
+					if(service.searchStaffByTel(map)== null){	//등록 할 수 있음
+						System.out.println("staff 등록 안됨");
+						service.staffAdd(map);	//직원 등록
+						result = "staffAdd 성공";
+				        mv.addObject("result",result);
+				        return mv;
+					}else{
+						System.out.println("이미 staff 등록 됨");	//이미 등록 됨
+						result = "이미 직원";
+				        mv.addObject("result",result);
+				        return mv;
+					}
+		        }
+				
+							
+				//System.out.println("staffAdd 성공");
+				
+				
+		        
+		        
+	    	} catch (Exception e) {
+	    		mv.addObject("result","staffAdd 실패");
+	    		
+	    		System.out.println("staffAdd 실패");
+	    	}
+	    	
+	    	return mv;
+	    }
+		
 
 }

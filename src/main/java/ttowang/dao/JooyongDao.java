@@ -96,6 +96,16 @@ public class JooyongDao extends abDAO{
 	}
 
 
+	public void staffAdd(Map<String, Object> map) {
+		insert("jooyong.staffAdd", map);
+	}
 	
+	public String searchStaffByTel(Map<String, Object> map) {
+		return (String)selectOne("jooyong.searchStaffByTel", map);
+	}
+	
+	public String searchUserIdByTel(Map<String, Object> map) {
+		return (String)selectOne("jooyong.searchUserIdByTel", map);
+	}
 	
 }

@@ -101,5 +101,17 @@ public class JooyongService {
 		dao.couponDelete(map);
 	}
 
+/////////////////////////////////////////////////////////////////////////
 	
+	public void staffAdd(Map<String, Object> map) {
+		dao.staffAdd(map);
+	}
+	
+	public String searchStaffByTel(Map<String, Object> map) {
+		return dao.searchStaffByTel(map);
+	}
+	
+	public String searchUserIdByTel(Map<String, Object> map) {
+		return dao.searchUserIdByTel(map);
+	}
 }

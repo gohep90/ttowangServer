@@ -139,7 +139,7 @@ public class MinsuController {
     		String userTel = request.getParameter("userTel");
     		String stampNumber = request.getParameter("stampNumber");
     		String result="초기";
-    		String userId2;
+    		
     		
     		map.put("userId", userId);
     		map.put("businessId", businessId);
@@ -147,11 +147,12 @@ public class MinsuController {
     		map.put("stampNumber", Integer.parseInt(stampNumber));
     		
     		        
-    		System.out.println("map에 넣기 성공 " + userId + " " +businessId+ " " +userTel+ " " +stampNumber);
+    		//System.out.println("map에 넣기 성공 " + userId + " " +businessId+ " " +userTel+ " " +stampNumber);
     		
     		//선물할 스탬프 개수보다 내 스탬프 개수가 적으면
     		if(Integer.parseInt(service.selectCheckStampNeed(map)) < Integer.parseInt(stampNumber)){
-    			result = "스탬프가 부족합니다.";
+    			System.out.println("스탬프 부족");
+    			result = "스탬프 부족";
     			mv.addObject("result",result);
     			return mv;
 	        }
@@ -159,27 +160,25 @@ public class MinsuController {
     		System.out.println("스탬프 개수 가져오기 성공");
     		
     		//상대 전화번호를 통해서 유저 아이디 찾기
-    		userId2 = String.valueOf(service.searchUserIdByTel(map));
-    		
-    		if(userId2 == null){
-	        	result = "등록된 전화번호가 없습니다.";
+    		if(service.searchUserIdByTel(map) == null){
+    			System.out.println("전화번호 검색 실패");
+    			result = "전화번호 없음";
 	        	mv.addObject("result",result);
 	        	return mv;
 	        	
 	        }else{
 	        	
 	        	System.out.println("전화번호 검색 성공");
-	        	System.out.println("상대 유저 : " + userId2);
-	        	service.deleteStamp(map);
-	        	//service.deleteStamp(commandMap);   //스탬프를 삭제하고
-	        	System.out.println("내 스탬프 삭제 성공");
-				//스탬프 추가
 	        	
+	        	service.deleteStamp(map);
+	        	System.out.println("내 스탬프 삭제 성공");
+	        	
+				//스탬프 추가
 	        	for(int i=0; i < Integer.parseInt(stampNumber); i++){
 					service.insertAddStamp(map);
 				}
 	        	
-	    		result="스탬프를 선물 했습니다.";
+	    		result="선물 성공";
 	        }
     		
 	        mv.addObject("result",result);
