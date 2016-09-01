@@ -208,5 +208,18 @@
 			
 		]]>
 	</select>
+	
+	
+	<!-- 직원 목록 가져오기 -->
+	<select id="searchAllMyStaff" parameterType="hashmap" resultType="map">
+		<![CDATA[
+			select user.userName, user.userGender, user.userTel, user.userId, staff.businessId, business.businessName
+			from staff
+			JOIN user ON staff.userId = user.userId
+			JOIN business ON staff.businessId = business.businessId
+			where business.userId = #{userId}
+			ORDER BY business.businessId ASC, staff.userId ASC
+		]]>
+	</select>
 </mapper>
 

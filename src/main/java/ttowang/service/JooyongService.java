@@ -114,4 +114,11 @@ public class JooyongService {
 	public String searchUserIdByTel(Map<String, Object> map) {
 		return dao.searchUserIdByTel(map);
 	}
+	
+	public List<Map<String, Object>> searchAllMyStaff(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.searchAllMyStaff(map);
+	}
+	
+	
 }

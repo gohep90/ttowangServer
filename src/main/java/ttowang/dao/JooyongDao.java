@@ -108,4 +108,10 @@ public class JooyongDao extends abDAO{
 		return (String)selectOne("jooyong.searchUserIdByTel", map);
 	}
 	
+	public List<Map<String, Object>> searchAllMyStaff(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String,Object>>)selectList("jooyong.searchAllMyStaff", map);
+	}
+	
+
 }

@@ -398,7 +398,7 @@ public class JooyongController {
 		
 		//직원 추가
 		@RequestMapping("/staffAdd.do")
-	    public ModelAndView giftStamp(Map<String, Object> map,HttpServletRequest request) throws Exception{
+	    public ModelAndView staffAdd(Map<String, Object> map,HttpServletRequest request) throws Exception{
 	    	ModelAndView mv = new ModelAndView("jsonView");
 	    	
 	    	try {
@@ -430,20 +430,42 @@ public class JooyongController {
 				        mv.addObject("result",result);
 				        return mv;
 					}
-		        }
-				
-							
-				//System.out.println("staffAdd 성공");
-				
-				
-		        
-		        
+		        }   
 	    	} catch (Exception e) {
-	    		mv.addObject("result","staffAdd 실패");
-	    		
+	    		mv.addObject("result","staffAdd 실패");	
 	    		System.out.println("staffAdd 실패");
 	    	}
+	    	return mv;
+	    }
+		
+		//직원 추가
+		@RequestMapping("/searchAllMyStaff.do")
+	    public ModelAndView searchAllMyStaff(Map<String, Object> map,HttpServletRequest request) throws Exception{
+	    	ModelAndView mv = new ModelAndView("jsonView");
 	    	
+	    	try {
+    			
+				String userId = request.getParameter("userId");
+				map.put("userId", userId);
+				List<Map<String, Object>> list;
+				
+				if((list = service.searchAllMyStaff(map)) == null){	//직원 없음
+	    			System.out.println("직원 없음");
+	    			mv.addObject("result","직원 없음");
+		        	return mv;
+		        	
+		        }else{	//직원 있음
+		        	list = service.searchAllMyStaff(map);
+		        	System.out.println("직원 있음");
+		        	mv.addObject("result","직원 있음");
+		        	mv.addObject("List", list);
+	        	
+			        return mv;
+		        }   
+	    	} catch (Exception e) {
+	    		mv.addObject("result","직원찾기 실패");	
+	    		System.out.println("직원찾기 실패");
+	    	}
 	    	return mv;
 	    }
 		
