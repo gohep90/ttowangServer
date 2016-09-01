@@ -149,6 +149,32 @@
 	</update>	
 	
 	
+	<!-- 유저 전화번호로 아이디 검색  -->
+	<select id="searchUserIdByTel" parameterType="hashmap" resultType="String">
+		<![CDATA[
+			select userId
+			from user
+			where userTel = #{userTel}
+			
+		]]>
+	</select>
+	
+	
+	
+	<!-- 스탬프 삭제  -->
+	<delete id="deleteStamp" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM stamplist 
+			WHERE
+				businessId = #{businessId}
+			and
+				userId = #{userId}
+			and
+				couponNum is null
+			limit #{stampNumber}
+		]]>
+	</delete>
+	
 	
 	
 </mapper>

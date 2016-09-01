@@ -48,5 +48,13 @@ public class MinsuDao extends abDAO{
 		return (String)selectOne("minsu.selectCheckStampNeed", map);
 	}
 
+	public String searchUserIdByTel(Map<String, Object> map) {
+		return (String)selectOne("minsu.searchUserIdByTel", map);
+	}
+	
+	public void deleteStamp(Map<String, Object> map) {
+		delete("minsu.deleteStamp", map);
+		
+	}
 	
 }

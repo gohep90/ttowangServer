@@ -53,6 +53,13 @@ public class MinsuService {
 		return dao.selectCheckStampNeed(map);
 	}
 
+	public String searchUserIdByTel(Map<String, Object> map) {
+		return dao.searchUserIdByTel(map);
+	}
+	
+	public void deleteStamp(Map<String, Object> map) {
+		dao.deleteStamp(map);
+	}
 
 
 }
