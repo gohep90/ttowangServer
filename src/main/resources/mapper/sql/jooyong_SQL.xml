@@ -235,5 +235,19 @@
 		]]>
 	</select>
 	
+	
+	<!-- 쿠폰 삭제  -->
+	<delete id="staffDel" parameterType="hashmap">
+    	<![CDATA[
+    		DELETE FROM
+    			staff
+    		WHERE
+    			userID = #{userId}
+			AND
+				businessID = #{businessId}
+    	]]>
+    </delete>
+	
+	
 </mapper>
 

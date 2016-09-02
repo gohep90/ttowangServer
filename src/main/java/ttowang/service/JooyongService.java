@@ -120,5 +120,9 @@ public class JooyongService {
 		return dao.searchAllMyStaff(map);
 	}
 	
+	//쿠폰 수정
+		public void staffDel(Map<String, Object> map) {
+			dao.staffDel(map);
+		}
 	
 }

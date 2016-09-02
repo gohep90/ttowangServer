@@ -113,5 +113,8 @@ public class JooyongDao extends abDAO{
 		return (List<Map<String,Object>>)selectList("jooyong.searchAllMyStaff", map);
 	}
 	
+	public void staffDel(Map<String, Object> map) {
+		delete("jooyong.staffDel", map);
+	}
 
 }
