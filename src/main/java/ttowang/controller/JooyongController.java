@@ -438,6 +438,7 @@ public class JooyongController {
 	    	return mv;
 	    }
 		
+		/*
 		//직원 추가
 		@RequestMapping("/searchAllMyStaff.do")
 	    public ModelAndView searchAllMyStaff(Map<String, Object> map,HttpServletRequest request) throws Exception{
@@ -456,6 +457,36 @@ public class JooyongController {
 		        	
 		        }else{	//직원 있음
 		        	list = service.searchAllMyStaff(map);
+		        	System.out.println("직원 있음");
+		        	mv.addObject("result","직원 있음");
+		        	mv.addObject("List", list);
+	        	
+			        return mv;
+		        }   
+	    	} catch (Exception e) {
+	    		mv.addObject("result","직원찾기 실패");	
+	    		System.out.println("직원찾기 실패");
+	    	}
+	    	return mv;
+	    }
+	    */
+		//직원 추가
+		@RequestMapping("/searchAllMyStaff.do")
+	    public ModelAndView searchAllMyStaff(Map<String, Object> map,HttpServletRequest request) throws Exception{
+	    	ModelAndView mv = new ModelAndView("jsonView");
+	    	
+	    	try {
+    			
+				String businessId = request.getParameter("businessId");
+				map.put("businessId", businessId);
+				List<Map<String, Object>> list;
+				
+				if((list = service.searchAllMyStaff(map)) == null){	//직원 없음
+	    			System.out.println("직원 없음");
+	    			mv.addObject("result","직원 없음");
+		        	return mv;
+		        	
+		        }else{	//직원 있음
 		        	System.out.println("직원 있음");
 		        	mv.addObject("result","직원 있음");
 		        	mv.addObject("List", list);
