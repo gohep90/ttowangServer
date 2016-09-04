@@ -157,8 +157,8 @@ public class JieunController {
      */
 	//deleteRecentStamp.do?USERID=2&BUSINESSID=11&STAMPDATE=20160726&STAMPNUM=1111
     @RequestMapping(value="/deleteRecentStamp.do")
-    public ModelAndView deleteRecentStamp(HttpServletRequest request) throws Exception{
-    	ModelAndView mv;
+    public void deleteRecentStamp(HttpServletRequest request) throws Exception{
+    //	ModelAndView mv;
     	Map<String, Object> commandMap = new HashMap<String, Object>();
     	String userID,stampDate,stampNum;
     	String businessID = null;
@@ -177,8 +177,8 @@ public class JieunController {
 	        service.deleteRecentStamp(commandMap);
     	} catch (Exception e) {}
     	
-    	mv = new ModelAndView("redirect:/selectRecentList.do?BUSINESSID="+businessID);
-    	return mv;
+  //  	mv = new ModelAndView("redirect:/selectRecentList.do?BUSINESSID="+businessID);
+  //  	return mv;
     }
 
 }
