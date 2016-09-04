@@ -16,6 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -203,48 +206,40 @@ public class MinsuController {
 	
 
 	
+	
+	//// redirect 해서 다시 받아야함
 	//파일 업로드(insert DB)
-	@RequestMapping(value="/uploadFile.do",method=RequestMethod.POST)
-	public void  uploadFile(HttpServletRequest request)throws Exception {
-		System.out.println("??"); 
-		String savePath ="C:/apache-tomcat-8.0.36/webapps/ROOT/ttowang"; 
-	 	int sizeLimit =5*1024*1024; //파일업로드 용량제한 10MB 
-	 	String fileName=""; 
-	 	 
-	    String businessName =""; 
-		 	 
-		 	 
-		 	 try{  
-		          MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, 
-		         		 "utf-8",new DefaultFileRenamePolicy());  
-		          Enumeration<?> files =multi.getFileNames(); 
-		          String file1 =(String)files.nextElement(); 
-		          //roomName=multi.getParameter("roomName"); 
-		    /*       
-		          id =URLDecoder.decode(multi.getParameter("id"),"utf-8");; 
-		          edt_sbook =URLDecoder.decode(multi.getParameter("edt_sbook"),"utf-8");; 
-		          edt_sauthor =URLDecoder.decode(multi.getParameter("edt_sauthor"),"utf-8");; 
-		          edt_spublisher =URLDecoder.decode(multi.getParameter("edt_spublisher"),"utf-8");; 
-		          edt_scost =URLDecoder.decode(multi.getParameter("edt_scost"),"utf-8");; 
-		          edt_sstate =URLDecoder.decode(multi.getParameter("edt_sstate"),"utf-8");; 
-		          edt_sother =URLDecoder.decode(multi.getParameter("edt_sother"),"utf-8");; 
-		         */  
-		          businessName =URLDecoder.decode(multi.getParameter("businessName"),"utf-8");; 
-		          System.out.println(businessName); 
-		           
-		         fileName= multi.getFilesystemName(file1);  
-		         String originFileName = multi.getOriginalFileName(file1); 
-		           
-		            if(fileName == null) {  
-		                  System.out.print("파일이 업로드 되지 않았습니다!!");  
-		            } else {  
-		                  System.out.println("getFilesystemName() : " + fileName);  
-		                  System.out.println("getOriginalFileName() : " + originFileName);  
-		             } // end if  
-		      } catch(Exception e) {  
-		            System.out.println(e.getMessage());  
-		      }  
-
+	@RequestMapping(value="/uploadFile.do")
+	public ModelAndView  uploadFile(MultipartHttpServletRequest request)throws Exception {
+	
+		ModelAndView mv = new ModelAndView("jsonView");
+		Map<String, MultipartFile> files = request.getFileMap();
+		Map<String, Object> map = new HashMap<String, Object>();
+		CommonsMultipartFile cmf = (CommonsMultipartFile) files.get("uploadfile");
+		
+		String filename=cmf.getOriginalFilename();
+				
+		String savePath ="C:/Users/Park/workspace/ttowang/src/main/webapp/image/"+filename;
+		File file = new File(savePath);
+		cmf.transferTo(file);	//파일 업로드처리
+		
+		String businessName = request.getParameter("businessName");
+		//String year = request.getParameter("year");
+		//String month = request.getParameter("month");
+		//String day = request.getParameter("day");
+		
+		System.out.println("filename:  "+filename);
+		System.out.println("businessName:  "+businessName);
+						
+		//map.put("filename", filename);
+		//map.put("email", email);
+		//map.put("year", year);
+		//map.put("month", month);
+		//map.put("day", day);
+					
+		//service.updateFile(map);
+		return mv;
+		
 	}
 	
 	
