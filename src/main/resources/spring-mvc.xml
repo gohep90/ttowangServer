@@ -30,5 +30,11 @@
 		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
+	
+	<!-- MultipartResolver 설정 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" /> <!-- 최대 10MB -->
+        <property name="maxInMemorySize" value="100000000" />
+    </bean>
 
 </beans>

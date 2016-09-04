@@ -1,18 +1,25 @@
 package ttowang.controller;
 
+import java.io.File;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import ttowang.service.MinsuService;
 
@@ -192,5 +199,82 @@ public class MinsuController {
     	
     	return mv;
     }
+	
+	
+
+	
+	//파일 업로드(insert DB)
+	@RequestMapping(value="/uploadFile.do",method=RequestMethod.POST)
+	public void  uploadFile(HttpServletRequest request)throws Exception {
+		System.out.println("??"); 
+		String savePath ="C:/apache-tomcat-8.0.36/webapps/ROOT/ttowang"; 
+	 	int sizeLimit =5*1024*1024; //파일업로드 용량제한 10MB 
+	 	String fileName=""; 
+	 	 
+	    String businessName =""; 
+		 	 
+		 	 
+		 	 try{  
+		          MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, 
+		         		 "utf-8",new DefaultFileRenamePolicy());  
+		          Enumeration<?> files =multi.getFileNames(); 
+		          String file1 =(String)files.nextElement(); 
+		          //roomName=multi.getParameter("roomName"); 
+		    /*       
+		          id =URLDecoder.decode(multi.getParameter("id"),"utf-8");; 
+		          edt_sbook =URLDecoder.decode(multi.getParameter("edt_sbook"),"utf-8");; 
+		          edt_sauthor =URLDecoder.decode(multi.getParameter("edt_sauthor"),"utf-8");; 
+		          edt_spublisher =URLDecoder.decode(multi.getParameter("edt_spublisher"),"utf-8");; 
+		          edt_scost =URLDecoder.decode(multi.getParameter("edt_scost"),"utf-8");; 
+		          edt_sstate =URLDecoder.decode(multi.getParameter("edt_sstate"),"utf-8");; 
+		          edt_sother =URLDecoder.decode(multi.getParameter("edt_sother"),"utf-8");; 
+		         */  
+		          businessName =URLDecoder.decode(multi.getParameter("businessName"),"utf-8");; 
+		          System.out.println(businessName); 
+		           
+		         fileName= multi.getFilesystemName(file1);  
+		         String originFileName = multi.getOriginalFileName(file1); 
+		           
+		            if(fileName == null) {  
+		                  System.out.print("파일이 업로드 되지 않았습니다!!");  
+		            } else {  
+		                  System.out.println("getFilesystemName() : " + fileName);  
+		                  System.out.println("getOriginalFileName() : " + originFileName);  
+		             } // end if  
+		      } catch(Exception e) {  
+		            System.out.println(e.getMessage());  
+		      }  
+
+	}
+	
+	
+	//파일 다운로드
+	@RequestMapping("/downloadFile.do")
+	public void downloadFile(HttpServletRequest request,HttpServletResponse response)throws Exception {
+		String fileName = URLDecoder.decode(request.getParameter("fileName"),"utf-8");
+		String client = request.getHeader("User-Agent");
+		boolean ie = client.indexOf("MSIE") > -1;
+		
+		byte fileByte[] = FileUtils.readFileToByteArray(new File("C:/apache-tomcat-8.0.36/webapps/ROOT/ttowang/"+fileName));
+		
+		response.setContentType("application/octet-stream");
+	    response.setContentLength(fileByte.length);
+	    
+	    //IE
+	    if(ie){
+	    	fileName = URLEncoder.encode(fileName, "euc-kr");
+	    }else{
+	    	fileName=new String(fileName.getBytes("euc-kr"),"iso-8859-1");
+	    }
+		response.setHeader("Content-Disposition", "attachment; fileName=\"" + fileName+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+	
+	
+	
+	
 	
 }
