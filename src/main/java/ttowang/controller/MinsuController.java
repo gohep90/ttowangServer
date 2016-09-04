@@ -204,8 +204,6 @@ public class MinsuController {
     }
 	
 	
-
-	
 	
 	//// redirect 해서 다시 받아야함
 	//파일 업로드(insert DB)
