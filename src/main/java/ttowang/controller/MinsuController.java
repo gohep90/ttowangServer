@@ -105,6 +105,33 @@ public class MinsuController {
 		}
 	}
 	
+	
+	//(스피너) 알바 포함
+	@RequestMapping(value="/spinnerListStaff.do")
+	public ModelAndView spinnerListStaff(Map<String, Object> map, HttpServletRequest request)throws Exception {
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<Map<String, Object>> list =null;
+		String userId=request.getParameter("userId");
+		
+		
+		try{
+			map.put("userId", userId);
+			list = service.spinnerListStaff(map);
+			mv.addObject("spinnerListStaff", list);
+		
+			System.out.println("spinnerListStaff 성공");
+			return mv;
+					
+		}catch(Exception e){
+			System.out.println("spinnerListStaff 실패");
+			return null;
+		}
+	}
+
+	
+	
+	
+	
 	// 스탬프 쿠폰 전환
 	@RequestMapping(value="/stampToCoupon.do")
     public ModelAndView stampToCoupon(Map<String, Object> map,HttpServletRequest request) throws Exception{

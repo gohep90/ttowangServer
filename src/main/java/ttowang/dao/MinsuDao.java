@@ -60,5 +60,9 @@ public class MinsuDao extends abDAO{
 	public void couponUse(Map<String, Object> map) {
 		update("minsu.couponUse", map);
 	}
+
+	public List<Map<String, Object>> spinnerListStaff(Map<String, Object> map) {
+		return (List<Map<String,Object>>)selectList("minsu.spinnerListStaff", map);
+	}
 	
 }

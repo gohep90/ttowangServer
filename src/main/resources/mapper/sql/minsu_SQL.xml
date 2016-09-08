@@ -99,6 +99,26 @@
 		]]>
 	</select>
 	
+	<select id="spinnerListStaff" parameterType="hashmap" resultType="map">
+		<![CDATA[
+			select 
+				b.businessId, b.businessName 
+			from 
+				staff a, business b 
+			where 
+				a.businessId = b.businessId
+			and
+    			a.userId=#{userId}
+			union
+			SELECT
+			    businessId, businessName
+			FROM
+			    business
+			WHERE
+				userId =#{userId}
+		]]>
+	</select>
+	
 	
 	<!-- 스탬프 제고 확인-->
 	<select id="selectCheckStampNeed" parameterType="hashmap" resultType="String">

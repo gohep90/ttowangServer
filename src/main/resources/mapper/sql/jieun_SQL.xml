@@ -96,9 +96,9 @@
     		DELETE FROM
     			membership
     		WHERE
-    			userID = #{USERID}
+    			userId = #{USERID}
 			AND
-				businessID = #{BUSINESSID}
+				businessId = #{BUSINESSID}
     	]]>
     </delete>
     

@@ -65,5 +65,9 @@ public class MinsuService {
 		dao.couponUse(map);
 	}
 
+	public List<Map<String, Object>> spinnerListStaff(Map<String, Object> map) {
+		return dao.spinnerListStaff(map);
+	}
+
 
 }
