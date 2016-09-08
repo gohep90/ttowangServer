@@ -176,6 +176,16 @@
 	</delete>
 	
 	
+	<!-- 스탬프 사용으로 변환-->
+	<update id="couponUse" parameterType="hashmap">
+		<![CDATA[
+			update couponlist
+			set couponUse=0
+			where
+				couponNum=#{couponNum}
+		]]>
+	</update>	
+	
 	
 </mapper>
 

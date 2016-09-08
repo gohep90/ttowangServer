@@ -61,5 +61,9 @@ public class MinsuService {
 		dao.deleteStamp(map);
 	}
 
+	public void couponUse(Map<String, Object> map) {
+		dao.couponUse(map);
+	}
+
 
 }

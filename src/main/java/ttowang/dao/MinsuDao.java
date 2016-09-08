@@ -56,5 +56,9 @@ public class MinsuDao extends abDAO{
 		delete("minsu.deleteStamp", map);
 		
 	}
+
+	public void couponUse(Map<String, Object> map) {
+		update("minsu.couponUse", map);
+	}
 	
 }

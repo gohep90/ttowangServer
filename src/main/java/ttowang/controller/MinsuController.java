@@ -114,7 +114,7 @@ public class MinsuController {
 		String businessId = request.getParameter("businessId");
 		String couponCode = request.getParameter("couponCode");
 		String stampNeed = request.getParameter("stampNeed");
-		String couponNum = businessId + (System.currentTimeMillis()%10000);
+		String couponNum = businessId + (System.currentTimeMillis()%1000);
 		String result="초기";
 		
     	try {
@@ -137,6 +137,28 @@ public class MinsuController {
     	
     	return mv;
     }
+	
+	
+	//쿠폰 사용
+	@RequestMapping("/couponUse.do")
+	public void couponUse(HttpServletRequest request) throws Exception {
+			Map<String, Object> map = new HashMap<String, Object>();
+			String couponNum = request.getParameter("couponNum");
+			
+		try{
+			map.put("couponNum", couponNum);
+			
+			service.couponUse(map);
+			System.out.println("couponUse 성공");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("couponUse 실패");
+		}
+	}
+
+	
+	
 	
 	
 	@RequestMapping(value="/giftStamp.do")
