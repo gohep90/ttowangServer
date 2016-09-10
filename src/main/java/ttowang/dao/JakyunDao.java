@@ -30,4 +30,8 @@ public class JakyunDao extends abDAO{
 	public void myInfoEdit(Map<String, Object> map) {
 		update("jakyun.myInfoEdit", map);
 	}
+	
+	public List<Map<String, Object>> checkTel(Map<String, Object> map) {
+		return (List<Map<String,Object>>)selectList("jakyun.checkTel", map);
+	}
 }
