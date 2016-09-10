@@ -73,6 +73,17 @@
 				userTel=#{userTel}
 		]]>
 	</update>
-		
+	
+	<select id="checkTel" parameterType="hashmap" resultType="map">
+		<![CDATA[
+			SELECT
+			    userTel, userName
+			FROM
+			    user
+			WHERE
+				userTel like CONCAT('%',#{tel},'%')
+		]]>
+	</select>
+
 </mapper>
 
