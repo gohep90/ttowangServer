@@ -35,4 +35,8 @@ public class JakyunService {
 	public void myInfoEdit(Map<String, Object> map) {
 		dao.myInfoEdit(map);
 	}
+	
+	public List<Map<String, Object>> checkTel(Map<String, Object> map) {
+		return dao.checkTel(map);
+	}
 }
