@@ -64,5 +64,9 @@ public class MinsuDao extends abDAO{
 	public List<Map<String, Object>> spinnerListStaff(Map<String, Object> map) {
 		return (List<Map<String,Object>>)selectList("minsu.spinnerListStaff", map);
 	}
+
+	public String selectCheckMembership(Map<String, Object> map) {
+		return (String)selectOne("minsu.selectCheckMembership", map);
+	}
 	
 }

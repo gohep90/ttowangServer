@@ -77,7 +77,7 @@
 	<select id="checkTel" parameterType="hashmap" resultType="map">
 		<![CDATA[
 			SELECT
-			    userTel, userName
+			    userTel, userName , userCode
 			FROM
 			    user
 			WHERE

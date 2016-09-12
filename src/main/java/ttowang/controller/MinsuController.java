@@ -69,7 +69,9 @@ public class MinsuController {
 			
 			if(service.selectCheck(map)==null){// 정회원인지 확인!!  정회원이 아니라면(준회원)
 				service.insertUser(map);	//준회원 등록
-				service.insertJunMembership(map);	//준회원 멤버쉽 등록!!
+			}
+			if(service.selectCheckMembership(map)==null){ //회원이 단골등록 했는지 확인
+				service.insertJunMembership(map);	//안했음 회원  단골등록!!
 			}
 
 			//여러게 스템프 적립시!!

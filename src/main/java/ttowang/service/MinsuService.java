@@ -69,5 +69,10 @@ public class MinsuService {
 		return dao.spinnerListStaff(map);
 	}
 
+	public String selectCheckMembership(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.selectCheckMembership(map);
+	}
+
 
 }
