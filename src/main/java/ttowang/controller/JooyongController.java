@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ public class JooyongController {
 
 	@Resource(name = "JooyongService")
 	private JooyongService service;
+	final static Logger logger = LoggerFactory.getLogger(JooyongController.class);
 
 	
 		//가맹점 리스트
@@ -36,16 +39,16 @@ public class JooyongController {
 				List<Map<String, Object>> list = service.selectbusinessList(commandMap);
 				mv.addObject("businessList", list);
 	
-				System.out.println("businessList 성공");
+				logger.debug("businessList 성공");
 				return mv;
 				
 			}catch(Exception e){
 				
-				System.out.println("businessList 실패");
+				logger.debug("businessList 실패");
 				return null;
 			}
 		}
-		
+
 		//가맹점 상세정보
 		//businessId를 받으면 businessId의 상세 정보 뿌려줌
 		@RequestMapping(value="/businessView.do",method= RequestMethod.POST)
