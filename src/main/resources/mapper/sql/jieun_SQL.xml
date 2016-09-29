@@ -113,7 +113,8 @@
 			        'FALSE',
 			        'TRUE') couponUsing,
 			    S.stampNum,
-    			left(S.stampTime, 5) stampTime
+    			    left(S.stampTime, 5) stampTime,
+    			    U.userTel
 			FROM
 			    user U,
 			    stamplist S
